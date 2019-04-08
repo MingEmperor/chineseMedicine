@@ -1,17 +1,16 @@
 <template>
   <div class="container">
-    <div>
-      
-    </div>
+    <mt-button type="default">default</mt-button>
+    <mt-button type="primary">primary</mt-button>
   </div>
 </template>
 
 <script>
+
 export default {
-  
+
 }
 </script>
 
 <style scoped>
-
 </style>
