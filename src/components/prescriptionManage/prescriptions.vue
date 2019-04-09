@@ -4,28 +4,6 @@
       <input class="toolbar-input" type="text" placeholder="这里输入想查询的处方.."/>
       <div class="toolbar-btn">搜索</div>
     </div>
-    <div class="swiper-wrapper">
-      <swiper :options="swiperOption" v-if="showSwiper" class="myswiper">
-        <swiper-slide v-for="item of imgList" :key="item.id">
-          <img class="swiper-img" :src="item.imgUrl" />
-        </swiper-slide>
-        <div class="swiper-pagination" slot="pagination"></div>
-      </swiper>
-    </div>
-    <div class="func-warpper">
-      <div
-        v-for="item in func"
-        :key="item.id"
-        class="func-item-warpper"
-        @click="handleclick(item.urlName)"
-      >
-        <img class="func-item-img" :src='item.imgUrl' />
-        <p class="func-item-desc">
-          {{item.desc}}
-        </p>
-      </div>
-    </div>
-    <purchasing-record></purchasing-record>
   </div>
 </template>
 
@@ -44,8 +22,7 @@ export default {
       func: [{
         id: 1,
         imgUrl: require('../../assets/处方.png'),
-        desc: '查看处方',
-        urlName: 'Prescriptions'
+        desc: '查看处方'
       }, {
         id: 2,
         imgUrl: require('../../assets/中药.png'),
@@ -65,14 +42,6 @@ export default {
   computed: {
     showSwiper () {
       return this.imgList.length
-    }
-  },
-  methods: {
-    handleclick (url) {
-      console.log('我被点击')
-      this.$router.replace({
-        name: url
-      })
     }
   },
   components: {
