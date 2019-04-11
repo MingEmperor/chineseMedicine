@@ -108,9 +108,9 @@ export default {
   font-size: 1.3rem;
   font-family: 'Gill Sans';
   border-radius: .35rem;
-  color: #909399;
-  background-color: rgba(144,147,153,.1);
-  border: 1px solid rgba(144,147,153,.2);
+  color: #000000;
+  background-color: rgba(208,239,132,.1);
+  border: 1px solid rgba(208,239,132,.5);
 }
 .select-item-calculate{
   display:flex;
