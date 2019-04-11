@@ -5,11 +5,14 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import App from './App.vue'
 import router from './router'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 import reset from './assets/reset.css'
+import 'swiper/dist/css/swiper.css'
 
 Vue.use(reset)
 Vue.use(MintUI)
 Vue.config.productionTip = false
+Vue.use(VueAwesomeSwiper)
 
 /* eslint-disable no-new */
 new Vue({
