@@ -4,16 +4,6 @@
       <input class="toolbar-input" type="text" placeholder="这里输入想查询的处方.."/>
       <div class="toolbar-btn">搜索</div>
     </div>
-    <div>轮播</div>
-    <div class="func-warpper">
-      <div v-for="item in func" :key="item.id" class="func-item-warpper">
-        <img class="func-item-img" :src='item.img' />
-        <p class="func-item-desc">
-          {{item.desc}}
-        </p>
-      </div>
-    </div>
-    <purchasing-record></purchasing-record>
   </div>
 </template>
 
@@ -23,23 +13,35 @@ export default {
   data () {
     return {
       IsSelect: true,
+      swiperOption: {
+        autoplay: 4000,
+        initialSlide: 1,
+        pagination: '.swiper-pagination',
+        loop: true
+      },
       func: [{
         id: 1,
-        img: '',
+        imgUrl: require('../../assets/处方.png'),
         desc: '查看处方'
       }, {
         id: 2,
-        img: '',
+        imgUrl: require('../../assets/中药.png'),
         desc: '三旬药分'
       }, {
         id: 3,
-        img: '',
+        imgUrl: require('../../assets/药材.png'),
         desc: '订购药材'
       }, {
         id: 4,
-        img: '',
-        desc: '医疗总结'
-      }]
+        imgUrl: require('../../assets/动态.png'),
+        desc: '医术交流'
+      }],
+      imgList: []
+    }
+  },
+  computed: {
+    showSwiper () {
+      return this.imgList.length
     }
   },
   components: {
@@ -55,14 +57,14 @@ export default {
   justify-content: center;
   width: 100%;
   height: 3.4rem;
-  background-color: #638C0B;
+  background-color: #D9D7C1;
 }
 .toolbar-input{
   padding-left: .5rem;
   width: 65%;
   height: 2.8rem;
   line-height: 2.8rem;
-  margin-left: 1.5rem;
+  margin-left: 3.8rem;
   font-size: 1.4rem;
   border-radius: .35rem;
 }
@@ -78,6 +80,7 @@ export default {
 .func-warpper{
   display: flex;
   justify-content: space-between;
+  margin-top: 1rem;
   width: 100%;
   height: 5rem;
 }
@@ -86,7 +89,6 @@ export default {
   position: relative;
   width: 23%;
   height: 100%;
-  background-color: #638C0B;
 }
 .func-item-img{
   position: absolute;
@@ -107,5 +109,23 @@ export default {
   text-align: center;
   color: #000000;
   font-size: .9rem;
+}
+.myswiper >>> .swiper-pagination-bullet-active {
+    background:#fff !important;
+}
+.swiper-wrapper{
+  position:relative;
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  padding-bottom: 37%;
+  background: #eee;
+}
+.swiper-img {
+    width: 100%;
+}
+.swiper-pagination {
+   position:absolute;
+   top:60%;
 }
 </style>

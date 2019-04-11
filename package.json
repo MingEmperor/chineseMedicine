@@ -16,6 +16,7 @@
   "dependencies": {
     "mint-ui": "^2.2.13",
     "sass": "^1.17.4",
+    "scss": "^0.2.4",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
