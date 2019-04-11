@@ -13,7 +13,7 @@
           :class="{'purchase-records-item-last ': item.id === records.length}"
         >
           <div class='item-name'>{{item.name}}</div>
-          <img class="item-img" src='../../assets/箭头.png'/>
+          <img class="item-img" src='../../assets/img/箭头.png'/>
           <div class='item-dose'>{{item.dose}}g</div>
         </li>
       </ul>
@@ -55,11 +55,11 @@ li {
 .purchase-warpper {
   margin: 3rem auto;
   width: 90%;
-  border: .15rem solid #D9D7C1;
+  border: .15rem solid #D0EF84;
   border-radius: 0 0 .88rem .88rem;
 }
 .purchase-title-warpper {
-  margin: 0 auto;
+  margin-left: 1.8rem;
   margin-top: -2rem;
   padding-top: .4rem;
   width: 10rem;
@@ -69,7 +69,7 @@ li {
   background-color: #ffffff;
 }
 .purchase-title-static {
-  color: #D9D7C1;
+  color: #D0EF84;
   font-family:'楷体';
   font-size: 1.6rem;
   font-weight: bold;

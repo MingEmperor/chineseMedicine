@@ -2,8 +2,8 @@
   <div class="container">
     <!-- 标题、日期、所用药材、备注、图片 -->
     <div class="toolbar-index">
-      <div class="toolbar-back">
-        ➡️
+      <div class="toolbar-back" @click="handleBack">
+        <img class="toolbar-back-icon" src="../../assets/img/返回.png" />
       </div>
       <input class="toolbar-input" type="text" placeholder="这里输入想查询的处方.."/>
       <div class="toolbar-btn">搜索</div>
@@ -39,7 +39,7 @@
           备注
         </div>
         <div class="presriptions-img">
-          <img class="" src="../../assets/箭头.png" />
+          <img class="" src="../../assets/img/箭头.png" />
         </div>
       </div>
     </div>
@@ -75,12 +75,12 @@
           备注备注备注备注备注备注备注
         </div>
         <div class="presriptions-img">
-          <img class="" src="../../assets/箭头.png" />
+          <img class="" src="../../assets/img/箭头.png" />
         </div>
       </div>
     </div>
 
-    <div class="float-add">
+    <div class="float-add" @click="addPrescription">
       +
     </div>
   </div>
@@ -99,7 +99,16 @@ export default {
     }
   },
   methods: {
-
+    handleBack () {
+      this.$router.replace({
+        name: 'Home'
+      })
+    },
+    addPrescription () {
+      this.$router.replace({
+        name: 'AddPrescription'
+      })
+    }
   },
   components: {
     purchasingRecord
@@ -109,6 +118,7 @@ export default {
 
 <style scoped>
 .toolbar-index {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,20 +127,23 @@ export default {
   background-color: #D9D7C1;
 }
 .toolbar-back {
-  width: 4rem;
+  position: absolute;
+  left: 1.2rem;
+  width: 2.8rem;
   height: 2.8rem;
   line-height: 2.8rem;
-  margin-left: 1rem;
   text-align: center;
-  font-size: 1.4rem;
-  color:#ffffff;
+}
+.toolbar-back-icon{
+  width: 100%;
+  height: 100%;
 }
 .toolbar-input {
   padding-left: .5rem;
-  width: 65%;
+  width: 66%;
   height: 2.8rem;
   line-height: 2.8rem;
-  margin-left: .5rem;
+  margin-left: 4rem;
   font-size: 1.4rem;
   border-radius: .35rem;
 }
@@ -211,5 +224,11 @@ export default {
   color: #ffffff;
   font-size: 2.3rem;
   background-color: #D9D7C1;
+}
+.float-add:hover{
+  width: 6rem;
+  height: 6rem;
+  line-height: 6rem;
+  border-radius: 3rem;
 }
 </style>

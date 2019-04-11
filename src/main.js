@@ -6,7 +6,7 @@ import 'mint-ui/lib/style.css'
 import App from './App.vue'
 import router from './router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
-import reset from './assets/reset.css'
+import reset from './assets/css/reset.css'
 import 'swiper/dist/css/swiper.css'
 
 Vue.use(reset)
