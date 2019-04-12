@@ -55,8 +55,8 @@ li {
 .purchase-warpper {
   margin: 3rem auto;
   width: 90%;
-  border: .15rem solid #D0EF84;
-  border-radius: 0 0 .88rem .88rem;
+  border: .1rem solid #4CAF50;
+  border-radius: 0 0 .35rem .35rem;
 }
 .purchase-title-warpper {
   margin-left: 1.8rem;
@@ -69,7 +69,7 @@ li {
   background-color: #ffffff;
 }
 .purchase-title-static {
-  color: #D0EF84;
+  color: #4CAF50;
   font-family:'楷体';
   font-size: 1.6rem;
   font-weight: bold;

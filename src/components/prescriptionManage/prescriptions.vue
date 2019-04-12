@@ -105,7 +105,7 @@ export default {
       })
     },
     addPrescription () {
-      this.$router.replace({
+      this.$router.push({
         name: 'AddPrescription'
       })
     }
@@ -124,11 +124,11 @@ export default {
   justify-content: center;
   width: 100%;
   height: 3.4rem;
-  background-color: #D9D7C1;
+  background-color: #4CAF50;
 }
 .toolbar-back {
   position: absolute;
-  left: 1.2rem;
+  left: .3rem;
   width: 2.8rem;
   height: 2.8rem;
   line-height: 2.8rem;
@@ -197,8 +197,8 @@ export default {
   font-family: 'Gill Sans';
   border-radius: .35rem;
   color: #909399;
-  background-color: rgba(144,147,153,.1);
-  border: 1px solid rgba(144,147,153,.2);
+  background-color: rgba(76,175,80,.1);
+  border: 1px solid rgba(76,175,80,.2);
 }
 .presriptions-desc{
   width: 100%;
@@ -223,7 +223,7 @@ export default {
   border-radius: 2rem;
   color: #ffffff;
   font-size: 2.3rem;
-  background-color: #D9D7C1;
+  background-color: #4CAF50;
 }
 .float-add:hover{
   width: 6rem;

@@ -62,24 +62,26 @@ export default {
 }
 .select-banner{
   position: relative;
+  margin-bottom: .3rem;
   display: flex;
   align-items: center;
   width: 100%;
-  height: 3.4rem;
+  height: 4.2rem;
   line-height: 3.4rem;
   background-color: #ffffff;
-  border-bottom: 1px solid #f3f3f3;
+  background-color: rgba(76,175,80,.1);
+  border-bottom: 1px solid rgba(76,175,80,.2);
 }
 .select-btn{
   position: absolute;
   right: .5rem;
-  width: 6rem;
-  height: 2.8rem;
-  line-height: 2.8rem;
+  width: 6.6rem;
+  height: 3.3rem;
+  line-height: 3.3rem;
   text-align: center;
   color: #ffffff;
   font-size: 1.3rem;
-  background-color: #D0EF84;
+  background-color: #4CAF50;
 }
 .select-item{
   display: flex;
@@ -88,7 +90,7 @@ export default {
   width: 100%;
   height: 4.2rem;
   background-color: #ffffff;
-  border-bottom: 1px dotted #D0EF84;
+  border-bottom: 1px dotted #4CAF50;
 }
 .select-item-img{
   opacity: 0;
@@ -109,8 +111,8 @@ export default {
   font-family: 'Gill Sans';
   border-radius: .35rem;
   color: #000000;
-  background-color: rgba(208,239,132,.1);
-  border: 1px solid rgba(208,239,132,.5);
+  background-color: rgba(76,175,80,.1);
+  border: 1px solid rgba(76,175,80,.2);
 }
 .select-item-calculate{
   display:flex;
@@ -124,9 +126,9 @@ export default {
   height: 2.4rem;
   line-height: 2.4rem;
   text-align: center;
-  color: #D0EF84;
+  color: #4CAF50;
   font-size: 1.6rem;
-  border: 1px solid #D0EF84;
+  border: 1px solid #4CAF50;
 }
 .select-item-number{
   font-size: 1.6rem;

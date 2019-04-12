@@ -53,7 +53,8 @@ export default {
       }, {
         id: 3,
         imgUrl: require('../../assets/img/药材.png'),
-        desc: '订购药材'
+        desc: '订购药材',
+        urlName: 'OrderHerbs'
       }, {
         id: 4,
         imgUrl: require('../../assets/img/动态.png'),
@@ -81,7 +82,7 @@ export default {
   },
   methods: {
     handleclick (url) {
-      this.$router.replace({
+      this.$router.push({
         name: url
       })
     }
@@ -99,7 +100,7 @@ export default {
   justify-content: center;
   width: 100%;
   height: 3.4rem;
-  background-color: #D0EF84;
+  background-color: #4CAF50;
 }
 .toolbar-input{
   padding-left: .5rem;
