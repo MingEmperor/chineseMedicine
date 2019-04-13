@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-  <mt-tab-container v-model="selected">
-  <mt-tab-container-item id="home" >
+  <mt-tab-container v-model="selected" swipeable>
+  <mt-tab-container-item id="home">
     <div class="toolbar-index">
       <div class="toolbar-input" type="text" @click="quary">
         这里输入想查询的处方..
@@ -33,14 +33,17 @@
     </div>
     <purchasing-record></purchasing-record>
   </mt-tab-container-item>
+
   <mt-tab-container-item id="tab-container2">
-
+    <prescriptions></prescriptions>
   </mt-tab-container-item>
+
   <mt-tab-container-item id="tab-container3">
-
+    <index></index>
   </mt-tab-container-item>
-  <mt-tab-container-item id="tab-container4">
 
+  <mt-tab-container-item id="tab-container4">
+    <personal-center></personal-center>
   </mt-tab-container-item>
 </mt-tab-container>
 
@@ -67,6 +70,9 @@
 
 <script>
 import purchasingRecord from '../common/purchasingRecords'
+import prescriptions from '../prescriptionManage/prescriptions'
+import index from '../orderHerbs/index'
+import personalCenter from '../personalCenter/personalCenter'
 export default {
   data () {
     return {
@@ -130,7 +136,10 @@ export default {
     }
   },
   components: {
-    purchasingRecord
+    purchasingRecord,
+    prescriptions,
+    index,
+    personalCenter
   }
 }
 </script>

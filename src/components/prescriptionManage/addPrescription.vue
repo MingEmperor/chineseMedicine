@@ -9,11 +9,16 @@
         添加药材
       </mt-button>
       <select-herbs v-show="isAdding" class="select-herbs"></select-herbs>
-      <mt-button  class="edit-select" type="primary"  @click="qwer">
+      <mt-button class="edit-select" type="primary"  @click="handleChangeVisible">
         相片/开启摄像头
       </mt-button>
+      <mt-actionsheet
+        :actions="actions"
+        v-model="sheetVisible">
+        相片/开启摄像头
+      </mt-actionsheet>
       <mt-button  class="edit-btn edit-select" type="primary" @click="handleConfrim">
-        确认添加
+        确认
       </mt-button>
     </div>
   </div>
@@ -26,7 +31,15 @@ import { Toast, Indicator } from 'mint-ui'
 export default {
   data () {
     return {
-      isAdding: false
+      isAdding: false,
+      sheetVisible: false,
+      actions: [{
+        name: '拍照',
+        methods: ''
+      }, {
+        name: '从相册中选择',
+        methods: ''
+      }]
     }
   },
   methods: {
@@ -38,8 +51,8 @@ export default {
       }, 500)
       this.isAdding = !this.isAdding
     },
-    qwer () {
-
+    handleChangeVisible () {
+      this.sheetVisible = true
     },
     handleConfrim () {
       Toast({
