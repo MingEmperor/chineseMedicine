@@ -2,9 +2,12 @@
   <div class="container">
     <div class="select-warpper">
       <div class="select-banner">
-        <div class="select-btn">
+        <!-- <div class="select-btn">
           确定
-        </div>
+        </div> -->
+        <mt-button  class="select-btn" type="primary">
+          确定
+        </mt-button>
       </div>
       <div v-for="item in herbs" :key="item.id" class="select-item">
         <div class="select-item-img" :class="{'select-item-img-select ': item.number !== 0}">

@@ -1,8 +1,12 @@
 <template>
   <div class="container">
     <div class="toolbar-index">
-      <input class="toolbar-input" type="text" placeholder="这里输入想查询的处方.."/>
-      <div class="toolbar-btn">搜索</div>
+      <div class="toolbar-input" type="text" @click="quary">
+        这里输入想查询的处方..
+      </div>
+      <div class="toolbar-btn">
+        搜索
+      </div>
     </div>
     <div>
       <swiper :options="swiperOption" class="myswiper">
@@ -85,6 +89,11 @@ export default {
       this.$router.push({
         name: url
       })
+    },
+    quary () {
+      this.$router.push({
+        name: 'Prescriptions'
+      })
     }
   },
   components: {
@@ -110,6 +119,8 @@ export default {
   margin-left: 3.8rem;
   font-size: 1.4rem;
   border-radius: .35rem;
+  color: #a3a3a3;
+  background-color: #ffffff;
 }
 .toolbar-btn{
   width: 4rem;

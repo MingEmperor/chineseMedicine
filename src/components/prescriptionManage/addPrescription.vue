@@ -8,9 +8,9 @@
       <mt-button  class="edit-select" type="primary" @click="handleAddHerbs">
         添加药材
       </mt-button>
-      <select-herbs v-show="isAdding"></select-herbs>
+      <select-herbs v-show="isAdding" class="select-herbs"></select-herbs>
       <mt-button  class="edit-select" type="primary"  @click="qwer">
-        添加相片
+        相片/开启摄像头
       </mt-button>
       <mt-button  class="edit-btn edit-select" type="primary" @click="handleConfrim">
         确认添加
@@ -22,7 +22,7 @@
 <script>
 import selectHerbs from '../common/selectHerbs'
 import toolbar from '../common/toolbar'
-import { Toast } from 'mint-ui'
+import { Toast, Indicator } from 'mint-ui'
 export default {
   data () {
     return {
@@ -31,7 +31,11 @@ export default {
   },
   methods: {
     handleAddHerbs () {
-      // Indicator.open('加载中...')
+      Indicator.open()
+      // setTimeout(console.log('1112'), 20000)
+      window.setInterval(function () {
+        Indicator.close()
+      }, 500)
       this.isAdding = !this.isAdding
     },
     qwer () {
@@ -40,6 +44,7 @@ export default {
     handleConfrim () {
       Toast({
         message: '操作成功',
+        duration: 1500,
         iconClass: 'icon icon-success'
       })
     }
@@ -62,6 +67,10 @@ export default {
   color: #4CAF50;
   background-color: #ffffff;
   border: 1px solid #4CAF50;
+}
+.select-herbs{
+  margin: .5rem 5%;
+  width: 90%;
 }
 .edit-btn{
   color: #ffffff;

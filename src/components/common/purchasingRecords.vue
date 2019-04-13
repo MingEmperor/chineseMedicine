@@ -55,8 +55,8 @@ li {
 .purchase-warpper {
   margin: 3rem auto;
   width: 90%;
-  border: .1rem solid #4CAF50;
-  border-radius: 0 0 .35rem .35rem;
+  border: 1px solid #4CAF50;
+  /* border-radius: 0 0 .35rem .35rem; */
 }
 .purchase-title-warpper {
   margin-left: 1.8rem;
