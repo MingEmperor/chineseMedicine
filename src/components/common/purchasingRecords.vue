@@ -70,7 +70,6 @@ li {
 }
 .purchase-title-static {
   color: #4CAF50;
-  font-family:'楷体';
   font-size: 1.6rem;
   font-weight: bold;
   margin-bottom: .8rem;
