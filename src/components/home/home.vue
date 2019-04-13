@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+  <mt-tab-container v-model="selected">
+  <mt-tab-container-item id="home" >
     <div class="toolbar-index">
       <input class="toolbar-input" type="text" placeholder="这里输入想查询的处方.."/>
       <div class="toolbar-btn">搜索</div>
@@ -26,7 +28,37 @@
       </div>
     </div>
     <purchasing-record></purchasing-record>
-  </div>
+  </mt-tab-container-item>
+  <mt-tab-container-item id="tab-container2">
+
+  </mt-tab-container-item>
+  <mt-tab-container-item id="tab-container3">
+
+  </mt-tab-container-item>
+  <mt-tab-container-item id="tab-container4">
+
+  </mt-tab-container-item>
+</mt-tab-container>
+
+  <mt-tabbar v-model="selected">
+  <mt-tab-item id="home" class="mat-tab-auto">
+    <img slot="icon" src="../../assets/img/home.png">
+    首页
+  </mt-tab-item>
+  <mt-tab-item id="tab-container2" class="mat-tab-auto">
+    <img slot="icon" src="../../assets/img/处方.png">
+    处方
+  </mt-tab-item>
+  <mt-tab-item id="tab-container3" class="mat-tab-auto">
+    <img slot="icon" src="../../assets/img/中药.png">
+    订购药材
+  </mt-tab-item>
+  <mt-tab-item id="tab-container4" class="mat-tab-auto">
+    <img slot="icon" src="../../assets/img/个人中心.png">
+    个人中心
+  </mt-tab-item>
+</mt-tabbar>
+</div>
 </template>
 
 <script>
@@ -34,6 +66,7 @@ import purchasingRecord from '../common/purchasingRecords'
 export default {
   data () {
     return {
+      selected: 'home',
       IsSelect: true,
       swiperOption: {
         autoplay: true,
@@ -170,5 +203,8 @@ export default {
 .swiper-pagination {
    position:absolute;
    top:60%;
+}
+.mat-tab-auto{
+  color: #4CAF50 !important;
 }
 </style>
