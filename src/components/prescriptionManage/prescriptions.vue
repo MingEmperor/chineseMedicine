@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" style="margin-bottom:3rem;">
     <!-- 标题、日期、所用药材、备注、图片 -->
     <div class="toolbar-index">
       <div class="toolbar-back" @click="handleBack">
@@ -213,14 +213,17 @@ export default {
 }
 .float-add{
   z-index: 999;
-  position: sticky;
+  position: fixed;
+  left: 0;
+  right: 0;
   bottom: 1rem;
   margin: 0 auto;
-  width: 4rem;
-  height: 4rem;
-  line-height: 4rem;
+  width: 6rem;
+  height: 6rem;
+  line-height: 6rem;
+  border-radius: 3rem;
   text-align: center;
-  border-radius: 2rem;
+  border-radius: 3rem;
   color: #ffffff;
   font-size: 2.3rem;
   background-color: #4CAF50;

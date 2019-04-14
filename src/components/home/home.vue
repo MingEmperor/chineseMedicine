@@ -47,20 +47,20 @@
   </mt-tab-container-item>
 </mt-tab-container>
 
-  <mt-tabbar v-model="selected">
+  <mt-tabbar v-model="selected" fixed>
   <mt-tab-item id="home" class="mat-tab-auto">
     <img slot="icon" src="../../assets/img/home.png">
     首页
   </mt-tab-item>
-  <mt-tab-item id="tab-container2" class="mat-tab-auto">
+  <mt-tab-item id="tab-container2" class="mat-tab-auto" fixed>
     <img slot="icon" src="../../assets/img/处方.png">
     处方
   </mt-tab-item>
-  <mt-tab-item id="tab-container3" class="mat-tab-auto">
+  <mt-tab-item id="tab-container3" class="mat-tab-auto" fixed>
     <img slot="icon" src="../../assets/img/中药.png">
     订购药材
   </mt-tab-item>
-  <mt-tab-item id="tab-container4" class="mat-tab-auto">
+  <mt-tab-item id="tab-container4" class="mat-tab-auto" fixed>
     <img slot="icon" src="../../assets/img/个人中心.png">
     个人中心
   </mt-tab-item>

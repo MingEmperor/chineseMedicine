@@ -17,10 +17,18 @@
       </mt-button>
       <div v-if="!isEditing" v-for='item in personInfo' :key='item.id'>
         <mt-cell :title="item.title" @click.native="handleEdit" is-link>
-          <span :style="item.style">{{item.info}}</span>
+          <span>{{item.info}}</span>
         </mt-cell>
       </div>
     </div>
+    <mt-datetime-picker
+      :visible.sync="pickerVisible"
+      type="date"
+      year-format="{value} 年"
+      month-format="{value} 月"
+      date-format="{value} 日"
+      style="dispaly:block;">
+    </mt-datetime-picker>
   </div>
 </template>
 
@@ -30,6 +38,7 @@ export default {
     return {
       isEditing: false,
       sheetVisible: false,
+      pickerVisible: true,
       actions: [{
         name: '拍照',
         methods: ''
@@ -40,33 +49,27 @@ export default {
       personInfo: [{
         id: 1,
         title: '用户名',
-        info: '明血如照',
-        style: 'color: #4CAF50;'
+        info: '明血如照'
       }, {
         id: 2,
         title: '主治领域',
-        info: '中医',
-        style: 'color: #4CAF50;'
+        info: '中医'
       }, {
         id: 3,
         title: '从医日期',
-        info: '2019-04-13',
-        style: 'color: #4CAF50;'
+        info: '2019-04-13'
       }, {
         id: 4,
         title: '性别',
-        info: '男',
-        style: 'color: #4CAF50;'
+        info: '男'
       }, {
         id: 5,
         title: '邮箱',
-        info: '861464751@qq.com',
-        style: 'color: #4CAF50;'
+        info: '861464751@qq.com'
       }, {
         id: 6,
         title: '药厂供应商',
-        info: '15498671243',
-        style: 'color: #1E90FF;'
+        info: '15498671243'
       }]
     }
   },
