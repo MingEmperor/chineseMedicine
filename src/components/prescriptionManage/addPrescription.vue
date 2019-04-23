@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <toolbar></toolbar>
+    <toolbar :title='title'></toolbar>
     <div class="edit-warpper">
       <!-- error, success, warning -->
-      <mt-field state='success' label="处方" placeholder="请输入处方名称（必填）"></mt-field>
+      <mt-field v-model="prescriptionName" :state='state' label="处方" placeholder="请输入处方名称（必填）"></mt-field>
       <mt-field label="备注" placeholder="请输入该处方的备注"></mt-field>
       <mt-button  class="edit-select" type="primary" @click="handleAddHerbs">
         添加药材
@@ -14,9 +14,14 @@
       </mt-button>
       <mt-actionsheet
         :actions="actions"
-        v-model="sheetVisible">
-        相片/开启摄像头
+        v-model="sheetVisible"
+      >
       </mt-actionsheet>
+      <video ref='video' class='edit-video' autoplay="autoplay"></video>
+      <canvas ref='canvas' width="500" height="500" class='edit-video'></canvas>
+      <mt-button v-show='isTaking' class="edit-select" type="primary" @click="takePhoto">
+        拍照
+      </mt-button>
       <mt-button  class="edit-btn edit-select" type="primary" @click="handleConfrim">
         确认
       </mt-button>
@@ -31,21 +36,29 @@ import { Toast, Indicator } from 'mint-ui'
 export default {
   data () {
     return {
+      title: '新增处方',
+      prescriptionName: '',
+      state: '',
       isAdding: false,
+      isTaking: false,
       sheetVisible: false,
+      mediaStreamTrack: null,
+      photoUrl: '',
       actions: [{
         name: '拍照',
-        methods: ''
+        method: this.openMedia
       }, {
         name: '从相册中选择',
-        methods: ''
+        method: ''
       }]
     }
+  },
+  watch: {
+    prescriptionName: 'handleState'
   },
   methods: {
     handleAddHerbs () {
       Indicator.open()
-      // setTimeout(console.log('1112'), 20000)
       window.setInterval(function () {
         Indicator.close()
       }, 500)
@@ -60,6 +73,48 @@ export default {
         duration: 1500,
         iconClass: 'icon icon-success'
       })
+    },
+    handleState () {
+      if (this.prescriptionName !== '') {
+        this.state = 'success'
+      } else {
+        this.state = ''
+      }
+    },
+    openMedia () {
+      this.isTaking = true
+      this.$refs.canvas.style.display = 'none'
+      let constraints = {
+        video: { width: 500, height: 500 },
+        audio: true
+      }
+      // 获得video摄像头
+      let video = this.$refs.video
+      video.style.display = 'block'
+      let promise = navigator.mediaDevices.getUserMedia(constraints)
+      promise.then((mediaStream) => {
+        this.mediaStreamTrack = typeof mediaStream.stop === 'function' ? mediaStream : mediaStream.getTracks()[1]
+        video.srcObject = mediaStream
+        video.play()
+      })
+    },
+    // 拍照
+    takePhoto () {
+      this.isTaking = false
+      // 获得Canvas对象
+      let video = this.$refs.video
+      let canvas = this.$refs.canvas
+      video.style.display = 'none'
+      canvas.style.display = 'block'
+      let ctx = canvas.getContext('2d')
+      ctx.drawImage(video, 0, 0, 500, 500)
+
+      // toDataURL  ---  可传入'image/png'---默认, 'image/jpg'
+      this.photoUrl = this.$refs.canvas.toDataURL()
+      // 这里的img就是得到的图片
+      console.log('img-----', this.photoUrl)
+      // document.getElementById('imgTag').src = img
+      this.mediaStreamTrack.stop()
     }
   },
   components: {
@@ -88,5 +143,11 @@ export default {
 .edit-btn{
   color: #ffffff;
   background-color: #4CAF50;
+}
+.edit-video{
+  display: none;
+  margin: 0 auto;
+  width: 94%;
+  border-radius: .35rem;
 }
 </style>

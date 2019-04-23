@@ -2,9 +2,6 @@
   <div class="container">
     <div class="select-warpper">
       <div class="select-banner">
-        <!-- <div class="select-btn">
-          确定
-        </div> -->
         <mt-button  class="select-btn" type="primary">
           确定
         </mt-button>
@@ -40,7 +37,47 @@ export default {
       }, {
         id: 2,
         name: '鹿茸',
-        number: 12
+        number: 0
+      }, {
+        id: 3,
+        name: '人参',
+        number: 0
+      }, {
+        id: 4,
+        name: '鹿茸',
+        number: 0
+      }, {
+        id: 5,
+        name: '人参',
+        number: 0
+      }, {
+        id: 6,
+        name: '鹿茸',
+        number: 0
+      }, {
+        id: 7,
+        name: '人参',
+        number: 0
+      }, {
+        id: 8,
+        name: '鹿茸',
+        number: 0
+      }, {
+        id: 9,
+        name: '人参',
+        number: 0
+      }, {
+        id: 10,
+        name: '鹿茸',
+        number: 0
+      }, {
+        id: 11,
+        name: '人参',
+        number: 0
+      }, {
+        id: 12,
+        name: '鹿茸',
+        number: 0
       }]
     }
   },
@@ -93,7 +130,7 @@ export default {
   width: 100%;
   height: 4.2rem;
   background-color: #ffffff;
-  border-bottom: 1px dotted #4CAF50;
+  border-bottom: 1px solid rgba(76,175,80,.2);
 }
 .select-item-img{
   opacity: 0;

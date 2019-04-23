@@ -1,7 +1,9 @@
 <template>
   <div class="container">
     <div class="bg-img">
-      <div class="info-photo" @click="handleChangeVisible"></div>
+      <div class="info-photo" @click="handleChangeVisible">
+        <img />
+      </div>
       <mt-actionsheet
         :actions="actions"
         v-model="sheetVisible">
@@ -21,14 +23,6 @@
         </mt-cell>
       </div>
     </div>
-    <mt-datetime-picker
-      :visible.sync="pickerVisible"
-      type="date"
-      year-format="{value} 年"
-      month-format="{value} 月"
-      date-format="{value} 日"
-      style="dispaly:block;">
-    </mt-datetime-picker>
   </div>
 </template>
 

@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/home/home'
 import Prescriptions from '@/components/prescriptionManage/prescriptions'
 import AddPrescription from '@/components/prescriptionManage/addPrescription'
+import PrescriptionsList from '@/components/prescriptionManage/PrescriptionsList'
 import OrderHerbs from '@/components/orderHerbs/index'
 import PersonalCenter from '@/components/personalCenter/personalCenter'
 Vue.use(Router)
@@ -29,6 +30,10 @@ export default new Router({
       path: '/components/personalCenter/personalCenter',
       name: 'PersonalCenter',
       component: PersonalCenter
+    }, {
+      path: '/components/prescriptionManage/prescriptionsList',
+      name: 'PrescriptionsList',
+      component: PrescriptionsList
     }
   ]
 })

@@ -1,101 +1,80 @@
 <template>
   <div class="container" style="margin-bottom:3rem;">
     <!-- 标题、日期、所用药材、备注、图片 -->
-    <div class="toolbar-index">
-      <div class="toolbar-back" @click="handleBack">
-        <img class="toolbar-back-icon" src="../../assets/img/返回.png" />
-      </div>
-      <input class="toolbar-input" type="text" placeholder="这里输入想查询的处方.."/>
-      <div class="toolbar-btn">搜索</div>
-    </div>
+    <toolbar :title="title"></toolbar>
     <div class="presriptions-warpper">
-      <div  class="presriptions-item">
+      <div class="presriptions-item">
         <div class="presriptions-title">
           <span class="presriptions-title-text">
-            七月七日诊侯智川先生
+            {{purchase.title}}
           </span>
           <span class="presriptions-title-date">
             2018-07-07
           </span>
         </div>
         <div class="presriptions-use">
-          <p class="qwe">
-            三七(33g)
-          </p>
-          <p class="qwe">
-            麻黄
-          </p>
-           <p class="qwe">
-            灵芝
-          </p>
-          <p class="qwe">
-            人参
-          </p>
-           <p class="qwe">
-            五谷
+          <p v-for='item in purchase.herbs' :key='item.id' class="qwe">
+            {{item.name}} - {{item.nubmer}}g
           </p>
         </div>
         <div class="presriptions-desc">
-          备注
+          {{purchase.desc}}
         </div>
         <div class="presriptions-img">
-          <img class="" src="../../assets/img/箭头.png" />
+          <img class="" :src='purchase.imgUrl' style='width:100%;'/>
         </div>
       </div>
     </div>
 
-    <div class="presriptions-warpper">
-      <div  class="presriptions-item">
-        <div class="presriptions-title">
-          <span class="presriptions-title-text">
-            七月七日诊侯智川先生
-          </span>
-          <span class="presriptions-title-date">
-            2018-07-07
-          </span>
-        </div>
-        <div class="presriptions-use">
-          <p class="qwe">
-            三七(33g)
-          </p>
-          <p class="qwe">
-            麻黄
-          </p>
-           <p class="qwe">
-            灵芝
-          </p>
-          <p class="qwe">
-            人参
-          </p>
-           <p class="qwe">
-            五谷
-          </p>
-        </div>
-        <div class="presriptions-desc">
-          备注备注备注备注备注备注备注
-        </div>
-        <div class="presriptions-img">
-          <img class="" src="../../assets/img/箭头.png" />
-        </div>
-      </div>
-    </div>
-
-    <div class="float-add" @click="addPrescription">
-      +
-    </div>
   </div>
 </template>
 
 <script>
+import toolbar from '../common/toolbar'
 import purchasingRecord from '../common/purchasingRecords'
 export default {
   data () {
     return {
-    }
-  },
-  computed: {
-    showSwiper () {
-      return this.imgList.length
+      title: '处方详情',
+      purchase: {
+        id: 1,
+        title: '七月七日诊侯智川先生',
+        herbs: [{
+          id: 1,
+          name: '三七',
+          nubmer: '17'
+        }, {
+          id: 2,
+          name: '麻黄',
+          nubmer: '22'
+        }, {
+          id: 3,
+          name: '人参',
+          nubmer: '30'
+        }, {
+          id: 4,
+          name: '鹿茸',
+          nubmer: '10'
+        }, {
+          id: 5,
+          name: '三七',
+          nubmer: '17'
+        }, {
+          id: 6,
+          name: '麻黄',
+          nubmer: '22'
+        }, {
+          id: 7,
+          name: '人参',
+          nubmer: '30'
+        }, {
+          id: 8,
+          name: '鹿茸',
+          nubmer: '10'
+        }],
+        desc: '这是一个备注',
+        imgUrl: require('../../assets/img/处方详情图.jpg')
+      }
     }
   },
   methods: {
@@ -111,6 +90,7 @@ export default {
     }
   },
   components: {
+    toolbar,
     purchasingRecord
   }
 }
@@ -159,9 +139,8 @@ export default {
 .presriptions-warpper{
   position: relative;
   width: 96%;
-  margin: 0 auto;
-  margin-top: 2rem;
-  border: 1px dashed #909399;
+  margin: 2rem auto;
+  border: 1px dashed #aaa;
 }
 .presriptions-title{
   position: absolute;
@@ -174,7 +153,7 @@ export default {
   background-color: #ffffff;
 }
 .presriptions-title-text{
-  font-size: 1.4rem;
+  font-size: 1.8rem;
   font-weight: bold;
   margin-right: 2rem;
 }
@@ -196,7 +175,7 @@ export default {
   font-size: 1.3rem;
   font-family: 'Gill Sans';
   border-radius: .35rem;
-  color: #909399;
+  color: rgba(76,175,80);
   background-color: rgba(76,175,80,.1);
   border: 1px solid rgba(76,175,80,.2);
 }
@@ -210,6 +189,7 @@ export default {
 .presriptions-img{
   margin: .8rem auto;
   width: 96%;
+  border: 1px solid #e3e3e3;
 }
 .float-add{
   z-index: 999;

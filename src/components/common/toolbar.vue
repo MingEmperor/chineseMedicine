@@ -3,15 +3,15 @@
     <div class="toolbar-back" @click="handleBack">
       <img class="toolbar-back-icon" src="../../assets/img/返回.png" />
     </div>
-    <div class="toolbar-btn">名称</div>
+    <div class="toolbar-btn">{{title}}</div>
   </div>
 </template>
 
 <script>
 export default {
+  props: ['title'],
   data () {
     return {
-
     }
   },
   methods: {
@@ -54,7 +54,7 @@ export default {
   border-radius: .35rem;
 }
 .toolbar-btn {
-  width: 4rem;
+  min-width: 8rem;
   height: 2.8rem;
   line-height: 2.8rem;
   margin-left: 1rem;

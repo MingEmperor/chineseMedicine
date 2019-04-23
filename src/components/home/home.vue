@@ -88,7 +88,7 @@ export default {
         id: 1,
         imgUrl: require('../../assets/img/处方.png'),
         desc: '查看处方',
-        urlName: 'Prescriptions'
+        urlName: 'PrescriptionsList'
       }, {
         id: 2,
         imgUrl: require('../../assets/img/中药.png'),
