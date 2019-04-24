@@ -4,14 +4,16 @@
       <div class="toolbar-back" @click="handleBack">
         <img class="toolbar-back-icon" src="../../assets/img/返回.png" />
       </div>
-      <input class="toolbar-input" type="text" placeholder="这里输入想查询的处方.."/>
-      <div class="toolbar-btn">
-        搜索
-      </div>
+      <input
+        v-model='keyword'
+        class='toolbar-input'
+        type='text'
+        placeholder='这里输入想查询的处方..'
+      />
     </div>
     <div class='prescription-list-warpper'>
       <div
-        v-for='item in purchase'
+        v-for='item in list'
         :key='item.id'
         class='prescription-list-item'
         @click='handleDetail'
@@ -36,7 +38,10 @@ import purchasingRecord from '../common/purchasingRecords'
 export default {
   data () {
     return {
-      purchase: [{
+      keyword: '',
+      timer: null,
+      list: [],
+      purchaseList: [{
         id: 1,
         title: '七月七日诊ni先生',
         purchaseDate: '2019-07-01'
@@ -57,6 +62,30 @@ export default {
         title: '七月七日诊en先生',
         purchaseDate: '2019-07-01'
       }]
+    }
+  },
+  created () {
+    this.list = this.purchaseList
+  },
+  watch: {
+    keyword () {
+      this.list = []
+      if (this.timer) {
+        clearTimeout(this.timer)
+      }
+      if (!this.keyword) {
+        this.list = this.purchaseList
+        return
+      }
+      this.timer = setTimeout(() => {
+        const result = []
+        for (let i in this.purchaseList) {
+          if (this.purchaseList[i].title.indexOf(this.keyword) > -1) {
+            result.push(this.purchaseList[i])
+          }
+        }
+        this.list = result
+      }, 100)
     }
   },
   methods: {
@@ -109,10 +138,10 @@ export default {
 }
 .toolbar-input {
   padding-left: .5rem;
-  width: 66%;
+  width: 75%;
   height: 2.8rem;
   line-height: 2.8rem;
-  margin-left: 4rem;
+  margin-left: 2rem;
   font-size: 1.4rem;
   border-radius: .35rem;
 }
