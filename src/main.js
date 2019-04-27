@@ -8,6 +8,9 @@ import router from './router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import reset from './assets/css/reset.css'
 import 'swiper/dist/css/swiper.css'
+import echarts from 'echarts'
+
+Vue.prototype.$echarts = echarts
 
 Vue.use(reset)
 Vue.use(MintUI)

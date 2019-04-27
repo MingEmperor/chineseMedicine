@@ -165,11 +165,12 @@ export default {
   border: 1px solid #dddddd;
 }
 .prescription-list-title{
-  font-size: 1.5rem;
+  font-weight: bold;
+  font-size: 1.4rem;
   margin-bottom: .5rem;
 }
 .prescription-list-date{
-  font-size: 1.3rem;
+  font-size: 1.15rem;
 }
 .float-add{
   z-index: 999;

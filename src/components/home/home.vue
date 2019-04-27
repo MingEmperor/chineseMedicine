@@ -35,7 +35,7 @@
   </mt-tab-container-item>
 
   <mt-tab-container-item id="tab-container2">
-    <prescriptions></prescriptions>
+    <prescriptions-list></prescriptions-list>
   </mt-tab-container-item>
 
   <mt-tab-container-item id="tab-container3">
@@ -70,9 +70,10 @@
 
 <script>
 import purchasingRecord from '../common/purchasingRecords'
-import prescriptions from '../prescriptionManage/prescriptions'
+import PrescriptionsList from '../prescriptionManage/PrescriptionsList'
 import index from '../orderHerbs/index'
 import personalCenter from '../personalCenter/personalCenter'
+import pieChart from '../pieChart/pieChart'
 export default {
   data () {
     return {
@@ -91,8 +92,9 @@ export default {
         urlName: 'PrescriptionsList'
       }, {
         id: 2,
-        imgUrl: require('../../assets/img/中药.png'),
-        desc: '三旬药分'
+        imgUrl: require('../../assets/img/饼状图.png'),
+        desc: '三旬药分',
+        urlName: 'PieChart'
       }, {
         id: 3,
         imgUrl: require('../../assets/img/药材.png'),
@@ -101,7 +103,7 @@ export default {
       }, {
         id: 4,
         imgUrl: require('../../assets/img/动态.png'),
-        desc: '医术交流'
+        desc: '我的周报'
       }],
       imgList: [{
         id: 1,
@@ -131,13 +133,14 @@ export default {
     },
     quary () {
       this.$router.push({
-        name: 'Prescriptions'
+        name: 'PrescriptionsList'
       })
     }
   },
   components: {
     purchasingRecord,
-    prescriptions,
+    PrescriptionsList,
+    pieChart,
     index,
     personalCenter
   }

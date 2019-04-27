@@ -9,7 +9,7 @@
             {{purchase.title}}
           </span>
           <span class="presriptions-title-date">
-            2018-07-07
+            {{purchase.date}}
           </span>
         </div>
         <div class="presriptions-use">
@@ -38,7 +38,8 @@ export default {
       title: '处方详情',
       purchase: {
         id: 1,
-        title: '七月七日诊侯智川先生',
+        title: '七月七日诊ni先生',
+        date: '2018-07-07',
         herbs: [{
           id: 1,
           name: '三七',
@@ -72,7 +73,7 @@ export default {
           name: '鹿茸',
           nubmer: '10'
         }],
-        desc: '这是一个备注',
+        desc: '这是一个备注这是一个备这是一个备注这是一个备注注这是一个备注这是一个备注',
         imgUrl: require('../../assets/img/处方详情图.jpg')
       }
     }
@@ -154,8 +155,10 @@ export default {
 }
 .presriptions-title-text{
   font-size: 1.8rem;
-  font-weight: bold;
   margin-right: 2rem;
+}
+.presriptions-title-date{
+  font-size: 1.3rem;
 }
 .presriptions-use{
   width: 96%;
@@ -181,8 +184,9 @@ export default {
 }
 .presriptions-desc{
   width: 100%;
-  height:3rem;
+  min-height:3rem;
   line-height:3rem;
+  font-size: 1.3rem;
   padding-left: .5rem;
   color: #909399;
 }

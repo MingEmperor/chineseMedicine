@@ -2,9 +2,10 @@
   <div class="container">
     <div class="select-warpper">
       <div class="select-banner">
-        <mt-button  class="select-btn" type="primary">
+        <mt-button v-show='!isAdding' class="select-btn" type="primary">
           确定
         </mt-button>
+        <mt-cell v-show='isAdding' class='select-txt' title="药材全部收录自中国医药网药材库"></mt-cell>
       </div>
       <div v-for="item in herbs" :key="item.id" class="select-item">
         <div class="select-item-img" :class="{'select-item-img-select ': item.number !== 0}">
@@ -26,7 +27,9 @@
 </template>
 
 <script>
+import { Cell } from 'mint-ui'
 export default {
+  props: ['isAdding'],
   data () {
     return {
       value: [],
@@ -92,6 +95,9 @@ export default {
         return item
       }
     }
+  },
+  components: {
+    Cell
   }
 }
 </script>
@@ -123,6 +129,12 @@ export default {
   font-size: 1.3rem;
   background-color: #4CAF50;
 }
+.select-txt{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0)
+}
 .select-item{
   display: flex;
   align-items: center;
@@ -130,6 +142,7 @@ export default {
   width: 100%;
   height: 4.2rem;
   background-color: #ffffff;
+  font-family: '汉仪';
   border-bottom: 1px solid rgba(76,175,80,.2);
 }
 .select-item-img{
@@ -148,7 +161,6 @@ export default {
   line-height: 2.8rem;
   text-align: center;
   font-size: 1.3rem;
-  font-family: 'Gill Sans';
   border-radius: .35rem;
   color: #000000;
   background-color: rgba(76,175,80,.1);

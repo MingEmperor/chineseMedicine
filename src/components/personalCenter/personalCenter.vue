@@ -98,11 +98,11 @@ export default {
   width: 6rem;
   height: 6rem;
   border-radius: 3.2rem;
-  border: 1px solid #4CAF50;
+  border: 1px solid #ffffff;
   background-color: red;
 }
 .info-btn{
-  margin: .5rem 5%;
+  margin: 1.5rem 5%;
   width: 90%;
   height: 3.6rem;
   line-height: 3.6rem;

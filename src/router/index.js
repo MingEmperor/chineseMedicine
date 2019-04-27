@@ -6,6 +6,7 @@ import AddPrescription from '@/components/prescriptionManage/addPrescription'
 import PrescriptionsList from '@/components/prescriptionManage/PrescriptionsList'
 import OrderHerbs from '@/components/orderHerbs/index'
 import PersonalCenter from '@/components/personalCenter/personalCenter'
+import PieChart from '@/components/pieChart/pieChart'
 Vue.use(Router)
 
 export default new Router({
@@ -34,6 +35,10 @@ export default new Router({
       path: '/components/prescriptionManage/prescriptionsList',
       name: 'PrescriptionsList',
       component: PrescriptionsList
+    }, {
+      path: '/components/prescriptionManage/pieChart',
+      name: 'PieChart',
+      component: PieChart
     }
   ]
 })
