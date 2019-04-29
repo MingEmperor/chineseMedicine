@@ -13,8 +13,7 @@ export default {
   name: 'hello',
   data () {
     return {
-      title: '三旬药分',
-      msg: 'Welcome to Your Vue.js App'
+      title: '三旬药分'
     }
   },
   mounted () {
@@ -25,19 +24,6 @@ export default {
       // 基于准备好的dom，初始化echarts实例
       let myChart = this.$echarts.init(document.getElementById('myChart'))
       // 绘制图表
-      // myChart.setOption({
-      //   title: { text: '上月用药成分数量前十的药材' },
-      //   tooltip: {},
-      //   xAxis: {
-      //     data: ['衬衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子']
-      //   },
-      //   yAxis: {},
-      //   series: [{
-      //     name: '销量',
-      //     type: 'bar',
-      //     data: [5, 20, 36, 10, 10, 20]
-      //   }]
-      // })
       var option = {
         title: {
           text: '药分前五',
@@ -76,7 +62,6 @@ export default {
           }
         ]
       }
-
       // 使用刚指定的配置项和数据显示图表。
       myChart.setOption(option)
     }

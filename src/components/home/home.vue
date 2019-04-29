@@ -103,7 +103,8 @@ export default {
       }, {
         id: 4,
         imgUrl: require('../../assets/img/动态.png'),
-        desc: '我的周报'
+        desc: '我的周报',
+        urlName: 'WeeklyReviewList'
       }],
       imgList: [{
         id: 1,

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="bg-img">
       <div class="info-photo" @click="handleChangeVisible">
-        <img />
+        <img class='info-photo-img' src='../../assets/img/userPhoto.jpg'/>
       </div>
       <mt-actionsheet
         :actions="actions"
@@ -94,15 +94,18 @@ export default {
   bottom: -3rem;
   left: 50%;
   margin-left: -3rem;
-  padding: .2rem;
+  padding: .1rem;
   width: 6rem;
   height: 6rem;
   border-radius: 3.2rem;
-  border: 1px solid #ffffff;
-  background-color: red;
+  background-color: #ffffff;
+}
+.info-photo-img{
+  border-radius: 3.2rem;
+  width: 100%;
 }
 .info-btn{
-  margin: 1.5rem 5%;
+  margin: .5rem 5%;
   width: 90%;
   height: 3.6rem;
   line-height: 3.6rem;

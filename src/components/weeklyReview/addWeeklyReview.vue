@@ -5,10 +5,6 @@
       <!-- error, success, warning -->
       <mt-field v-model="prescriptionName" :state='state' label="处方" placeholder="请输入处方名称（必填）"></mt-field>
       <mt-field label="备注" placeholder="请输入该处方的备注"></mt-field>
-      <mt-button  class="edit-select" type="primary" @click="handleAddHerbs">
-        添加药材
-      </mt-button>
-      <select-herbs v-show="isAdding" class="select-herbs" v-on:listenSelectHerbs='showValueList'></select-herbs>
       <mt-button class="edit-select" type="primary" @click="handleChangeVisible">
         相片/开启摄像头
       </mt-button>
@@ -23,7 +19,7 @@
         拍照
       </mt-button>
       <mt-button  class="edit-btn edit-select" type="primary" @click="handleConfrim">
-        确认
+        发表
       </mt-button>
     </div>
   </div>
@@ -36,7 +32,7 @@ import { Toast, Indicator } from 'mint-ui'
 export default {
   data () {
     return {
-      title: '新增处方',
+      title: '添加周报',
       prescriptionName: '',
       state: '',
       isAdding: false,
@@ -140,10 +136,6 @@ export default {
   color: #4CAF50;
   background-color: #ffffff;
   border: 1px solid #4CAF50;
-}
-.select-herbs{
-  margin: .5rem 5%;
-  width: 90%;
 }
 .edit-btn{
   color: #ffffff;

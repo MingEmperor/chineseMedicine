@@ -7,6 +7,9 @@ import PrescriptionsList from '@/components/prescriptionManage/PrescriptionsList
 import OrderHerbs from '@/components/orderHerbs/index'
 import PersonalCenter from '@/components/personalCenter/personalCenter'
 import PieChart from '@/components/pieChart/pieChart'
+import WeeklyReviewList from '@/components/weeklyReview/weeklyReviewList'
+import WeeklyReview from '@/components/weeklyReview/WeeklyReview'
+import AddWeeklyReview from '@/components/weeklyReview/AddWeeklyReview'
 Vue.use(Router)
 
 export default new Router({
@@ -39,6 +42,18 @@ export default new Router({
       path: '/components/prescriptionManage/pieChart',
       name: 'PieChart',
       component: PieChart
+    }, {
+      path: '/components/weeklyReview/weeklyReviewList',
+      name: 'WeeklyReviewList',
+      component: WeeklyReviewList
+    }, {
+      path: '/components/weeklyReview/weeklyReview',
+      name: 'WeeklyReview',
+      component: WeeklyReview
+    }, {
+      path: '/components/weeklyReview/addWeeklyReview',
+      name: 'AddWeeklyReview',
+      component: AddWeeklyReview
     }
   ]
 })

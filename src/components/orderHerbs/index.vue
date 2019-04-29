@@ -5,10 +5,11 @@
       当前供应商电话：{{tel}}
     </div>
     <purchasing-record></purchasing-record>
-    <select-herbs class="select-herbs-wapper" :isAdding='true'></select-herbs>
+    <select-herbs class="select-herbs-wapper" :isAdding='true' v-on:listenSelectHerbs='showValueList'></select-herbs>
     <mt-button class="select-btn-confrim" type="primary"  @click="handleAdd">
       订购选中药材
     </mt-button>
+    <a ref="makeCall" style="opcity:0"></a>
   </div>
 </template>
 
@@ -16,22 +17,54 @@
 import toolbar from '../common/toolbar'
 import purchasingRecord from '../common/purchasingRecords'
 import selectHerbs from '../common/selectHerbs'
+import { MessageBox } from 'mint-ui'
 export default {
   data () {
     return {
       title: '药材订购',
-      tel: '15234804752'
+      tel: '15234804752',
+      order: '',
+      makeCall: '',
+      valueList: []
     }
   },
   methods: {
+    showValueList (data) {
+      this.valueList = data
+    },
     handleAdd () {
-      console.log('')
+      MessageBox({
+        title: '即将订购药材',
+        message: '我们将会给你的供应商发送短信订单，确定要订购吗?',
+        confirmButtonText: '确认订购',
+        confirmButtonClass: 'confirm-btn',
+        showCancelButton: true
+      }).then(action => {
+        this.handleMakeCall()
+      })
+    },
+    handleSpellName () {
+
+    },
+    handleMakeCall () {
+      this.makeCall = this.$refs.makeCall
+      let u = navigator.userAgent
+      let isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1
+      // android终端
+      let isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/) // ios终端
+      if (isiOS) {
+        this.makeCall.href = 'sms://' + this.tel + '?body=' + this.order
+      } else if (isAndroid) {
+        this.makeCall.href = 'sms://' + this.tel + '&body=' + this.order
+      }
+      this.makeCall.click()
     }
   },
   components: {
     toolbar,
     purchasingRecord,
-    selectHerbs
+    selectHerbs,
+    MessageBox
   }
 }
 </script>
@@ -58,5 +91,8 @@ export default {
 .select-herbs-wapper{
   margin: 0 auto;
   width: 92%;
+}
+.confirm-btn{
+  color: #4CAF50;
 }
 </style>

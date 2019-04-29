@@ -32,7 +32,7 @@ export default {
   props: ['isAdding'],
   data () {
     return {
-      value: [],
+      valueList: [],
       herbs: [{
         id: 1,
         name: '人参',
@@ -84,15 +84,23 @@ export default {
       }]
     }
   },
+  updated () {
+    this.$emit('listenSelectHerbs', this.valueList)
+  },
   methods: {
     handleAddHerbs (item) {
       item.number++
+      if (this.valueList.indexOf(item) === -1) {
+        this.valueList.push(item)
+        // this.$emit('listenSelectHerbs', this.valueList)
+      }
     },
     handleReduceHerbs (item) {
       if (item.number > 0) {
         item.number--
-      } else {
-        return item
+      }
+      if (item.number === 0 && this.valueList.includes(item)) {
+        this.valueList.splice(this.valueList.indexOf(item), 1)
       }
     }
   },
