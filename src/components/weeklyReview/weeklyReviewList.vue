@@ -52,19 +52,23 @@ export default {
       }, {
         id: 2,
         title: '六阳病症浅谈',
-        purchaseDate: '2019-08-06'
+        purchaseDate: '2019-08-06',
+        imgUrl: require('../../assets/img/shanghanlun.jpg')
       }, {
         id: 3,
         title: '微观角度分析中成药',
-        purchaseDate: '2019-07-01'
+        purchaseDate: '2019-07-01',
+        imgUrl: require('../../assets/img/shanghanlun.jpg')
       }, {
         id: 4,
         title: '中医与周易关系考究',
-        purchaseDate: '2019-07-01'
+        purchaseDate: '2019-07-01',
+        imgUrl: require('../../assets/img/shanghanlun.jpg')
       }, {
         id: 5,
         title: '五行对应草药成分',
-        purchaseDate: '2019-07-01'
+        purchaseDate: '2019-07-01',
+        imgUrl: require('../../assets/img/shanghanlun.jpg')
       }]
     }
   },
