@@ -1,71 +1,72 @@
 <template>
   <div class="container">
-  <mt-tab-container v-model="selected" swipeable>
-  <mt-tab-container-item id="home">
-    <div class="toolbar-index">
-      <div class="toolbar-input" type="text" @click="quary">
-        这里输入想查询的处方..
-      </div>
-      <div class="toolbar-btn">
-        搜索
-      </div>
-    </div>
-    <div>
-      <swiper :options="swiperOption" class="myswiper">
-        <swiper-slide v-for="item in imgList" :key="item.id">
-          <img class="swiper-img" :src="item.imgUrl" />
-        </swiper-slide>
-        <div class="swiper-pagination" slot="pagination"></div>
-      </swiper>
-    </div>
-    <div class="func-warpper">
-      <div
-        v-for="item in func"
-        :key="item.id"
-        class="func-item-warpper"
-        @click="handleclick(item.urlName)"
-      >
-        <img class="func-item-img" :src='item.imgUrl' />
-        <p class="func-item-desc">
-          {{item.desc}}
-        </p>
-      </div>
-    </div>
-    <purchasing-record></purchasing-record>
-  </mt-tab-container-item>
+    <mt-tab-container v-model="selected" swipeable>
+      <mt-tab-container-item id="home">
+        <div class="toolbar-index">
+          <div class="toolbar-input" type="text" @click="quary">
+            这里输入想查询的处方..
+          </div>
+          <div class="toolbar-btn">
+            搜索
+          </div>
+        </div>
+        <div>
+          <swiper :options="swiperOption" class="myswiper">
+            <swiper-slide v-for="item in imgList" :key="item.id">
+              <img class="swiper-img" :src="item.imgUrl" />
+            </swiper-slide>
+            <div class="swiper-pagination" slot="pagination"></div>
+          </swiper>
+        </div>
+        <div class="func-warpper">
+          <div
+            v-for="item in func"
+            :key="item.id"
+            class="func-item-warpper"
+            @click="handleclick(item.urlName)"
+          >
+            <img class="func-item-img" :src='item.imgUrl' />
+            <p class="func-item-desc">
+              {{item.desc}}
+            </p>
+          </div>
+        </div>
+        <purchasing-record></purchasing-record>
+      </mt-tab-container-item>
 
-  <mt-tab-container-item id="tab-container2">
-    <prescriptions-list></prescriptions-list>
-  </mt-tab-container-item>
+      <mt-tab-container-item id="tab-container2">
+        <prescriptions-list>
+        </prescriptions-list>
+      </mt-tab-container-item>
+      <mt-tab-container-item id="tab-container3">
+        <index>
+        </index>
+      </mt-tab-container-item>
+      <mt-tab-container-item id="tab-container4">
+        <personal-center>
+        </personal-center>
+      </mt-tab-container-item>
+    </mt-tab-container>
 
-  <mt-tab-container-item id="tab-container3">
-    <index></index>
-  </mt-tab-container-item>
-
-  <mt-tab-container-item id="tab-container4">
-    <personal-center></personal-center>
-  </mt-tab-container-item>
-</mt-tab-container>
-
-  <mt-tabbar v-model="selected" fixed>
-  <mt-tab-item id="home" class="mat-tab-auto">
-    <img slot="icon" src="../../assets/img/home.png">
-    首页
-  </mt-tab-item>
-  <mt-tab-item id="tab-container2" class="mat-tab-auto" fixed>
-    <img slot="icon" src="../../assets/img/处方.png">
-    处方
-  </mt-tab-item>
-  <mt-tab-item id="tab-container3" class="mat-tab-auto" fixed>
-    <img slot="icon" src="../../assets/img/中药.png">
-    订购药材
-  </mt-tab-item>
-  <mt-tab-item id="tab-container4" class="mat-tab-auto" fixed>
-    <img slot="icon" src="../../assets/img/个人中心.png">
-    个人中心
-  </mt-tab-item>
-</mt-tabbar>
-</div>
+    <mt-tabbar v-model="selected" fixed>
+      <mt-tab-item id="home" class="mat-tab-auto">
+        <img slot="icon" src="../../assets/img/home.png">
+        首页
+      </mt-tab-item>
+      <mt-tab-item id="tab-container2" class="mat-tab-auto" fixed>
+        <img slot="icon" src="../../assets/img/处方.png">
+        处方
+      </mt-tab-item>
+      <mt-tab-item id="tab-container3" class="mat-tab-auto" fixed>
+        <img slot="icon" src="../../assets/img/中药.png">
+        订购药材
+      </mt-tab-item>
+      <mt-tab-item id="tab-container4" class="mat-tab-auto" fixed>
+        <img slot="icon" src="../../assets/img/个人中心.png">
+        个人中心
+      </mt-tab-item>
+    </mt-tabbar>
+  </div>
 </template>
 
 <script>

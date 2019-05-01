@@ -21,6 +21,7 @@
       <mt-button  class="edit-btn edit-select" type="primary" @click="handleConfrim">
         发表
       </mt-button>
+      <input  type="file"/>
     </div>
   </div>
 </template>

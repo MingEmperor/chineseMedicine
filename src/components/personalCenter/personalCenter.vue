@@ -6,20 +6,44 @@
       </div>
       <mt-actionsheet
         :actions="actions"
-        v-model="sheetVisible">
+        v-model="sheetVisible"
+      >
         相片/开启摄像头
       </mt-actionsheet>
     </div>
     <div class="info-warpper" >
-      <div v-if="isEditing" v-for='item in personInfo' :key='item.id'>
-        <mt-field :label="item.title" placeholder="请输入内容" :value="item.info"></mt-field>
+      <div
+        v-if="isEditing"
+        v-for='item in personInfo'
+        :key='item.id'
+      >
+        <mt-field
+          :label="item.title"
+          placeholder="请输入内容"
+          :value="item.info"
+        ></mt-field>
       </div>
-      <mt-button v-if="isEditing" class="info-btn" type="primary" @click="handleEdit">
+      <mt-button
+        v-if="isEditing"
+        class="info-btn"
+        type="primary"
+        @click="handleEdit"
+      >
         确认
       </mt-button>
-      <div v-if="!isEditing" v-for='item in personInfo' :key='item.id'>
-        <mt-cell :title="item.title" @click.native="handleEdit" is-link>
-          <span>{{item.info}}</span>
+      <div
+        v-if="!isEditing"
+        v-for='item in personInfo'
+        :key='item.id'
+      >
+        <mt-cell
+          :title="item.title"
+          @click.native="handleEdit"
+          is-link
+        >
+          <span>
+            {{item.info}}
+          </span>
         </mt-cell>
       </div>
     </div>

@@ -2,8 +2,12 @@
   <div class='container'>
     <div class='purchase-warpper'>
       <div class='purchase-title-warpper'>
-        <div class='purchase-title-static'>最近采购</div>
-        <div class='purchase-title-time'>{{recordstime}}</div>
+        <div class='purchase-title-static'>
+          最近采购
+        </div>
+        <div class='purchase-title-time'>
+          {{recordstime}}
+        </div>
       </div>
       <ul class='purchase-records-warpper'>
         <li
@@ -12,9 +16,13 @@
           class='purchase-records-item'
           :class="{'purchase-records-item-last ': item.id === records.length}"
         >
-          <div class='item-name'>{{item.name}}</div>
+          <div class='item-name'>
+            {{item.name}}
+          </div>
           <img class="item-img" src='../../assets/img/箭头.png'/>
-          <div class='item-dose'>{{item.dose}}g</div>
+          <div class='item-dose'>
+            {{item.dose}}g
+          </div>
         </li>
       </ul>
     </div>
@@ -56,7 +64,6 @@ li {
   margin: 3rem auto;
   width: 90%;
   border: 1px solid #4CAF50;
-  /* border-radius: 0 0 .35rem .35rem; */
 }
 .purchase-title-warpper {
   margin-left: 1.8rem;
@@ -91,7 +98,7 @@ li {
 .purchase-records-item-last {
   border-bottom: 0;
 }
-.item-img{
+.item-img {
   margin: auto 0;
   width: 1rem;
   height: 1rem;

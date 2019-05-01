@@ -21,6 +21,9 @@
         <div class='prescription-list-title'>
           {{item.title}}
         </div>
+        <div class='prescription-list-img'>
+          <img :src='item.imgUrl' />
+        </div>
         <div class='prescription-list-date'>
           {{item.purchaseDate}}
         </div>
@@ -44,7 +47,8 @@ export default {
       purchaseList: [{
         id: 1,
         title: '关于伤寒论的探究浅析',
-        purchaseDate: '2019-07-01'
+        purchaseDate: '2019-07-01',
+        imgUrl: require('../../assets/img/shanghanlun.jpg')
       }, {
         id: 2,
         title: '六阳病症浅谈',
@@ -165,12 +169,20 @@ export default {
   border: 1px solid #dddddd;
 }
 .prescription-list-title{
-  font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   margin-bottom: .5rem;
 }
+.prescription-list-img{
+  width: 100%;
+  margin-bottom: .8rem;
+}
+.prescription-list-img > img{
+  width: 80%;
+}
 .prescription-list-date{
-  font-size: 1.15rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #4CAF50;
 }
 .float-add{
   z-index: 999;

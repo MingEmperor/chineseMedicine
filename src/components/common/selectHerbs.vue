@@ -2,24 +2,44 @@
   <div class="container">
     <div class="select-warpper">
       <div class="select-banner">
-        <mt-button v-show='!isAdding' class="select-btn" type="primary">
+        <mt-button
+          v-show='!isAdding'
+          class="select-btn"
+          type="primary"
+        >
           确定
         </mt-button>
-        <mt-cell v-show='isAdding' class='select-txt' title="药材全部收录自中国医药网药材库"></mt-cell>
+        <mt-cell
+          v-show='isAdding'
+          class='select-txt'
+          title="药材全部收录自中国医药网药材库"
+        >
+        </mt-cell>
       </div>
-      <div v-for="item in herbs" :key="item.id" class="select-item">
-        <div class="select-item-img" :class="{'select-item-img-select ': item.number !== 0}">
+      <div
+        v-for="item in herbs"
+        :key="item.id"
+        class="select-item"
+      >
+        <div
+          class="select-item-img"
+          :class="{'select-item-img-select ': item.number !== 0}"
+        >
           <img src="../../assets/img/勾选.png" style="width:100%;"/>
         </div>
         <div class="select-item-title">
           {{item.name}}
         </div>
         <div class="select-item-calculate">
-          <div class="select-item-symbol" @click="handleReduceHerbs(item)">-</div>
+          <div class="select-item-symbol" @click="handleReduceHerbs(item)">
+            -
+          </div>
           <div class="select-item-number">
             {{item.number}}
           </div>
-          <div class="select-item-symbol" @click="handleAddHerbs(item)">+</div>
+          <div class="select-item-symbol" @click="handleAddHerbs(item)">
+            +
+          </div>
         </div>
       </div>
     </div>
@@ -92,7 +112,6 @@ export default {
       item.number++
       if (this.valueList.indexOf(item) === -1) {
         this.valueList.push(item)
-        // this.$emit('listenSelectHerbs', this.valueList)
       }
     },
     handleReduceHerbs (item) {

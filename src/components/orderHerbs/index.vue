@@ -5,8 +5,17 @@
       当前供应商电话：{{tel}}
     </div>
     <purchasing-record></purchasing-record>
-    <select-herbs class="select-herbs-wapper" :isAdding='true' v-on:listenSelectHerbs='showValueList'></select-herbs>
-    <mt-button class="select-btn-confrim" type="primary"  @click="handleAdd">
+    <select-herbs
+      class="select-herbs-wapper"
+      :isAdding='true'
+      v-on:listenSelectHerbs='showValueList'
+    >
+    </select-herbs>
+    <mt-button
+      class="select-btn-confrim"
+      type="primary"
+      @click="handleAdd"
+    >
       订购选中药材
     </mt-button>
     <a ref="makeCall" style="opcity:0"></a>
