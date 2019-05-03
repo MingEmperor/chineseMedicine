@@ -10,12 +10,14 @@ import PieChart from '@/components/pieChart/pieChart'
 import WeeklyReviewList from '@/components/weeklyReview/weeklyReviewList'
 import WeeklyReview from '@/components/weeklyReview/WeeklyReview'
 import AddWeeklyReview from '@/components/weeklyReview/AddWeeklyReview'
+import Login from '@/components/loginAndRegister/login'
+import Register from '@/components/loginAndRegister/register'
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/components/home/home',
       name: 'Home',
       component: Home
     }, {
@@ -54,6 +56,14 @@ export default new Router({
       path: '/components/weeklyReview/addWeeklyReview',
       name: 'AddWeeklyReview',
       component: AddWeeklyReview
+    }, {
+      path: '/',
+      name: 'Login',
+      component: Login
+    }, {
+      path: '/components/loginAndRegister/Register',
+      name: 'Register',
+      component: Register
     }
   ]
 })
