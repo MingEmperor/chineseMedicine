@@ -16,6 +16,17 @@ export default {
       title: '三旬药分'
     }
   },
+  created () {
+    this.$axios.post('/ChineseMedicine/recipe/sanxun.do')
+      .then(res => {
+        if (res.data.success) {
+          this.legend = res.data.legendData
+          this.series.data = res.data.seriesData
+        } else {
+          console.log(res.data)
+        }
+      })
+  },
   mounted () {
     this.drawLine()
   },

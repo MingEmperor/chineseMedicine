@@ -6,7 +6,7 @@
           最近采购
         </div>
         <div class='purchase-title-time'>
-          {{recordstime}}
+          {{recordsTime}}
         </div>
       </div>
       <ul class='purchase-records-warpper'>
@@ -31,28 +31,29 @@
 
 <script>
 export default {
-  data () {
-    return {
-      recordstime: '2019-04-09',
-      records: [{
-        id: 1,
-        name: '三七',
-        dose: '34'
-      }, {
-        id: 2,
-        name: '当归',
-        dose: '34'
-      }, {
-        id: 3,
-        name: '三七',
-        dose: '34'
-      }, {
-        id: 4,
-        name: '当归',
-        dose: '34'
-      }]
-    }
-  }
+  props: ['recordsTime', 'records']
+  // data () {
+  //   return {
+  //     recordsTime: '2019-04-09',
+  //     records: [{
+  //       id: 1,
+  //       name: '三七',
+  //       dose: '34'
+  //     }, {
+  //       id: 2,
+  //       name: '当归',
+  //       dose: '34'
+  //     }, {
+  //       id: 3,
+  //       name: '三七',
+  //       dose: '34'
+  //     }, {
+  //       id: 4,
+  //       name: '当归',
+  //       dose: '34'
+  //     }]
+  //   }
+  // }
 }
 </script>
 

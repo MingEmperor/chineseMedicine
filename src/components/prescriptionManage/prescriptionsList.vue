@@ -16,7 +16,7 @@
         v-for='item in list'
         :key='item.id'
         class='prescription-list-item'
-        @click='handleDetail'
+        @click='handleDetail(item.id)'
       >
         <div class='prescription-list-title'>
           {{item.title}}
@@ -65,7 +65,11 @@ export default {
     }
   },
   created () {
-    this.list = this.purchaseList
+    this.$axios.post('/ChineseMedicine/recipe/allRecipe.do')
+      .then(res => {
+        this.purchaseList = res.data
+        this.list = this.purchaseList
+      })
   },
   watch: {
     keyword () {
@@ -99,9 +103,12 @@ export default {
         name: 'AddPrescription'
       })
     },
-    handleDetail () {
+    handleDetail (id) {
       this.$router.push({
-        name: 'Prescriptions'
+        name: 'Prescriptions',
+        params: {
+          id: id
+        }
       })
     }
   },

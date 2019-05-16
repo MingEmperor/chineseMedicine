@@ -31,7 +31,10 @@
             </p>
           </div>
         </div>
-        <purchasing-record></purchasing-record>
+        <purchasing-record
+          :recordsTime='recordsTime'
+          :records='records'
+        ></purchasing-record>
       </mt-tab-container-item>
 
       <mt-tab-container-item id="tab-container2">
@@ -119,8 +122,26 @@ export default {
       }, {
         id: 4,
         imgUrl: require('../../assets/img/针灸Banner.jpg')
-      }]
+      }],
+      recordsTime: '',
+      records: []
     }
+  },
+  created () {
+    this.$axios.get('ChineseMedicine/recipe/allRecipe.do')
+      .then(res => {
+        console.log(res)
+      })
+    this.$axios.post('ChineseMedicine/medicine/lateBuy.do')
+      .then(res => {
+        if (res.data) {
+          this.records = res.data
+          this.recordsTime = res.data[0].recordstime
+          console.log(this.records)
+        } else {
+          console.log(res.data)
+        }
+      })
   },
   computed: {
     showSwiper () {

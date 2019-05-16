@@ -4,33 +4,33 @@
       注册账号
     </header>
     <mt-field
-      label='手机号'
-      placeholder="请输入手机号"
-      :value='userTel'
+      label='用户名'
+      placeholder="请输入用户名"
+      v-model='userTel'
       type='tel'
     ></mt-field>
     <mt-field
       label='密码'
       placeholder="请输入密码"
-      :value='userPassword'
+      v-model='userPassword'
       type='password'
     ></mt-field>
     <mt-field
       label='确认密码'
       placeholder="请确认密码"
-      :value='userPassword'
+      v-model='confrimPassword'
       type='password'
     ></mt-field>
     <mt-field
       label='邮箱'
       placeholder="请输入邮箱"
-      :value='userTel'
+      v-model='userEmail'
       type='email'
     ></mt-field>
     <mt-field
-      label='供应商'
-      placeholder="请输入供应商手机号"
-      :value='userTel'
+      label='手机号'
+      placeholder="请输入手机号"
+      v-model='userSaleTel'
       type='tel'
     ></mt-field>
     <mt-button
@@ -40,22 +40,72 @@
     >
       注册
     </mt-button>
+    <mt-button
+      class='register-btn'
+      type="primary"
+      @click="handleLogin"
+      plain
+    >
+      返回登录
+    </mt-button>
   </div>
 </template>
 
 <script>
+import {Toast} from 'mint-ui'
 export default {
   data () {
     return {
       userTel: '',
-      userPassword: ''
+      userPassword: '',
+      confrimPassword: '',
+      userEmail: '',
+      userSaleTel: ''
     }
   },
   methods: {
     handleRegister () {
-      this.$router.replace({
-        name: 'Login'
-      })
+      if (this.userTel !== '' && this.userPassword !== '') {
+        if (this.userPassword === this.confrimPassword) {
+          this.$axios.post('/ChineseMedicine/user/register.do', {
+            username: this.userTel,
+            password: this.userPassword,
+            email: this.userEmail,
+            telephone: this.userSaleTel
+          })
+            .then(res => {
+              console.log(res)
+              if (res.data.success) {
+                Toast({
+                  message: '注册成功',
+                  iconClass: 'icon icon-success'
+                })
+                this.$router.replace({
+                  name: 'Login'
+                })
+              } else {
+                console.log('注册失败')
+                Toast({
+                  message: '注册失败，请重试',
+                  iconClass: 'icon icon-success'
+                })
+              }
+            })
+        } else {
+          Toast({
+            message: '两次输入的密码不正确，请确认密码',
+            iconClass: 'icon icon-success'
+          })
+        }
+      } else {
+        Toast({
+          message: '请检查您的信息是否为空',
+          iconClass: 'icon icon-success'
+        })
+      }
+    },
+    handleLogin () {
+      this.$router.back()
     }
   }
 }

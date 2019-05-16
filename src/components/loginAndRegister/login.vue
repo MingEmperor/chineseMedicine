@@ -6,12 +6,12 @@
     <mt-field
       label='手机号'
       placeholder="请输入手机号"
-      :value='userTel'
+      v-model='userTel'
     ></mt-field>
     <mt-field
       label='密码'
       placeholder="请输入密码"
-      :value='userPassword'
+      v-model='userPassword'
       type='password'
     ></mt-field>
     <mt-button
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import {Toast} from 'mint-ui'
 export default {
   data () {
     return {
@@ -42,12 +43,37 @@ export default {
   },
   methods: {
     handleLogin () {
-      this.$router.replace({
-        name: 'Home'
-      })
+      if (this.userTel && this.userPassword) {
+        this.$axios.post('ChineseMedicine/user/login.do', {
+          telephone: this.userTel,
+          password: this.userPassword
+        })
+          .then(res => {
+            console.log(res)
+            if (res.data.success) {
+              Toast({
+                message: '登陆成功',
+                iconClass: 'icon icon-success'
+              })
+              this.$router.push({
+                name: 'Home'
+              })
+            } else {
+              console.log('登陆失败')
+              Toast({
+                message: res.data.message
+              })
+            }
+          })
+      } else {
+        Toast({
+          message: '输入内容为空',
+          iconClass: 'icon icon-success'
+        })
+      }
     },
     handleRegister () {
-      this.$router.replace({
+      this.$router.push({
         name: 'Register'
       })
     }

@@ -37,7 +37,7 @@ export default {
     return {
       title: '处方详情',
       purchase: {
-        id: 1,
+        rid: 1,
         title: '七月七日诊ni先生',
         date: '2018-07-07',
         herbs: [{
@@ -77,6 +77,18 @@ export default {
         imgUrl: require('../../assets/img/处方详情图.jpg')
       }
     }
+  },
+  created () {
+    this.$axios.get('ChineseMedicine/recipe/recipe.do', {
+      id: this.$route.params.userId
+    })
+      .then(res => {
+        if (res.data.success) {
+          this.purchase = res.data
+        } else {
+          console.log(res.data.success)
+        }
+      })
   },
   methods: {
     handleBack () {

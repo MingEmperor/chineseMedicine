@@ -25,19 +25,28 @@
           class="select-item-img"
           :class="{'select-item-img-select ': item.number !== 0}"
         >
-          <img src="../../assets/img/勾选.png" style="width:100%;"/>
+          <img
+            src='../../assets/img/勾选.png'
+            style='width:100%;'
+          />
         </div>
         <div class="select-item-title">
           {{item.name}}
         </div>
         <div class="select-item-calculate">
-          <div class="select-item-symbol" @click="handleReduceHerbs(item)">
+          <div
+            class="select-item-symbol"
+            @click="handleReduceHerbs(item)"
+          >
             -
           </div>
           <div class="select-item-number">
             {{item.number}}
           </div>
-          <div class="select-item-symbol" @click="handleAddHerbs(item)">
+          <div
+            class='select-item-symbol'
+            @click='handleAddHerbs(item)'
+          >
             +
           </div>
         </div>
@@ -59,46 +68,6 @@ export default {
         number: 0
       }, {
         id: 2,
-        name: '鹿茸',
-        number: 0
-      }, {
-        id: 3,
-        name: '人参',
-        number: 0
-      }, {
-        id: 4,
-        name: '鹿茸',
-        number: 0
-      }, {
-        id: 5,
-        name: '人参',
-        number: 0
-      }, {
-        id: 6,
-        name: '鹿茸',
-        number: 0
-      }, {
-        id: 7,
-        name: '人参',
-        number: 0
-      }, {
-        id: 8,
-        name: '鹿茸',
-        number: 0
-      }, {
-        id: 9,
-        name: '人参',
-        number: 0
-      }, {
-        id: 10,
-        name: '鹿茸',
-        number: 0
-      }, {
-        id: 11,
-        name: '人参',
-        number: 0
-      }, {
-        id: 12,
         name: '鹿茸',
         number: 0
       }]

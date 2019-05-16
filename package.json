@@ -14,6 +14,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "echarts": "^4.2.1",
     "mint-ui": "^2.2.13",
     "sass": "^1.17.4",
     "scss": "^0.2.4",

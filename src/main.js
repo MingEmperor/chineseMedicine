@@ -9,6 +9,11 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 import reset from './assets/css/reset.css'
 import 'swiper/dist/css/swiper.css'
 import echarts from 'echarts'
+import axios from 'axios'
+
+axios.defaults.withCredentials = true
+axios.defaults.crossDomain = true
+Vue.prototype.$axios = axios
 
 Vue.prototype.$echarts = echarts
 

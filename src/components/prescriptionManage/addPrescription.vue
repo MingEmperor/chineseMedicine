@@ -1,28 +1,67 @@
 <template>
-  <div class="container">
+  <div class='container'>
     <toolbar :title='title'></toolbar>
-    <div class="edit-warpper">
+    <div class='edit-warpper'>
       <!-- error, success, warning -->
-      <mt-field v-model="prescriptionName" :state='state' label="处方" placeholder="请输入处方名称（必填）"></mt-field>
-      <mt-field label="备注" placeholder="请输入该处方的备注"></mt-field>
-      <mt-button  class="edit-select" type="primary" @click="handleAddHerbs">
+      <mt-field
+        v-model='prescriptionName'
+        :state='state'
+        label='处方'
+        placeholder='请输入处方名称（必填）'
+      ></mt-field>
+      <mt-field
+        v-model='prescriptionNote'
+        label='备注'
+        placeholder='请输入该处方的备注'
+      ></mt-field>
+      <mt-button
+        class='edit-select'
+        type='primary'
+        @click='handleAddHerbs'
+      >
         添加药材
       </mt-button>
-      <select-herbs v-show="isAdding" class="select-herbs" v-on:listenSelectHerbs='showValueList'></select-herbs>
-      <mt-button class="edit-select" type="primary" @click="handleChangeVisible">
+      <select-herbs
+        v-show='isAdding'
+        class='select-herbs'
+        v-on:listenSelectHerbs='showValueList'
+      ></select-herbs>
+      <mt-button
+        class='edit-select'
+        type='primary'
+        @click='handleChangeVisible'
+      >
         相片/开启摄像头
       </mt-button>
       <mt-actionsheet
-        :actions="actions"
-        v-model="sheetVisible"
+        :actions='actions'
+        v-model='sheetVisible'
       >
       </mt-actionsheet>
-      <video ref='video' class='edit-video' autoplay="autoplay"></video>
-      <canvas ref='canvas' width="500" height="500" class='edit-video'></canvas>
-      <mt-button v-show='isTaking' class="edit-select" type="primary" @click="takePhoto">
+      <video
+        ref='video'
+        class='edit-video'
+        autoplay='autoplay'
+      ></video>
+      <canvas
+        ref='canvas'
+        width='500'
+        height='500'
+        class='edit-video'
+      ></canvas>
+      <mt-button
+        v-show='isTaking'
+        class='edit-select'
+        type='primary'
+        @click='takePhoto'
+      >
         拍照
       </mt-button>
-      <mt-button  class="edit-btn edit-select" type="primary" @click="handleConfrim">
+      <mt-button
+        class='edit-btn edit-select'
+        type='primary'
+        @click='handleConfrim'
+      >
         确认
       </mt-button>
     </div>
@@ -38,12 +77,14 @@ export default {
     return {
       title: '新增处方',
       prescriptionName: '',
+      prescriptionNote: '',
       state: '',
       isAdding: false,
       isTaking: false,
       valueList: [],
       sheetVisible: false,
       mediaStreamTrack: null,
+      img: '',
       photoUrl: '',
       actions: [{
         name: '拍照',
@@ -72,12 +113,21 @@ export default {
       this.sheetVisible = true
     },
     handleConfrim () {
-      Toast({
-        message: '操作成功',
-        duration: 1500,
-        iconClass: 'icon icon-success'
+      this.$axios.post('ChineseMedicine/recipe/addRecipe.do', {
+        prescriptionName: this.prescriptionName,
+        prescriptionNote: this.prescriptionNote,
+        valueList: this.valueList,
+        photoUrl: this.photoUrl
       })
-      console.log(this.valueList)
+        .then(res => {
+          if (res.data.success) {
+            Toast({
+              message: '操作成功',
+              duration: 1500,
+              iconClass: 'icon icon-success'
+            })
+          }
+        })
     },
     handleState () {
       if (this.prescriptionName !== '') {
@@ -115,11 +165,18 @@ export default {
       ctx.drawImage(video, 0, 0, 500, 500)
 
       // toDataURL  ---  可传入'image/png'---默认, 'image/jpg'
-      this.photoUrl = this.$refs.canvas.toDataURL()
+      this.img = this.$refs.canvas.toDataURL()
       // 这里的img就是得到的图片
-      console.log('img-----', this.photoUrl)
+      console.log('img-----', this.img)
       // document.getElementById('imgTag').src = img
       this.mediaStreamTrack.stop()
+      this.$axios.post('ChineseMedicine/recipe/upload.do', {
+        file: this.img
+      })
+        .then(res => {
+          console.log(res.data)
+          this.photoUrl = res.data
+        })
     }
   },
   components: {

@@ -1,7 +1,13 @@
 <template>
   <div class="toolbar-index">
-    <div class="toolbar-back" @click="handleBack">
-      <img class="toolbar-back-icon" src="../../assets/img/返回.png" />
+    <div
+      class="toolbar-back"
+      @click="handleBack"
+    >
+      <img
+        class="toolbar-back-icon"
+        src="../../assets/img/返回.png"
+      />
     </div>
     <div class="toolbar-btn">
       {{title}}

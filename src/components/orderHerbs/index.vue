@@ -4,7 +4,10 @@
     <div class="tel">
       当前供应商电话：{{tel}}
     </div>
-    <purchasing-record></purchasing-record>
+    <purchasing-record
+      :recordsTime='recordsTime'
+      :records='records'
+    ></purchasing-record>
     <select-herbs
       class="select-herbs-wapper"
       :isAdding='true'
@@ -34,8 +37,22 @@ export default {
       tel: '15234804752',
       order: '',
       makeCall: '',
-      valueList: []
+      valueList: [],
+      recordsTime: '',
+      records: []
     }
+  },
+  created () {
+    this.$axios.post('ChineseMedicine/medicine/lateBuy.do')
+      .then(res => {
+        if (res.data) {
+          this.records = res.data
+          this.recordsTime = res.data[0].recordstime
+          console.log(this.records)
+        } else {
+          console.log(res.data)
+        }
+      })
   },
   methods: {
     showValueList (data) {
