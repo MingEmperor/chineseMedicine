@@ -37,14 +37,14 @@
         ></purchasing-record>
       </mt-tab-container-item>
 
-      <mt-tab-container-item id="tab-container2">
+      <!-- <mt-tab-container-item id="tab-container2">
         <prescriptions-list>
         </prescriptions-list>
       </mt-tab-container-item>
       <mt-tab-container-item id="tab-container3">
         <index>
         </index>
-      </mt-tab-container-item>
+      </mt-tab-container-item> -->
       <mt-tab-container-item id="tab-container4">
         <personal-center>
         </personal-center>
@@ -56,14 +56,14 @@
         <img slot="icon" src="../../assets/img/home.png">
         首页
       </mt-tab-item>
-      <mt-tab-item id="tab-container2" class="mat-tab-auto" fixed>
+      <!-- <mt-tab-item id="tab-container2" class="mat-tab-auto" fixed>
         <img slot="icon" src="../../assets/img/处方.png">
         处方
       </mt-tab-item>
       <mt-tab-item id="tab-container3" class="mat-tab-auto" fixed>
         <img slot="icon" src="../../assets/img/中药.png">
         订购药材
-      </mt-tab-item>
+      </mt-tab-item> -->
       <mt-tab-item id="tab-container4" class="mat-tab-auto" fixed>
         <img slot="icon" src="../../assets/img/个人中心.png">
         个人中心
@@ -128,16 +128,11 @@ export default {
     }
   },
   created () {
-    this.$axios.get('ChineseMedicine/recipe/allRecipe.do')
-      .then(res => {
-        console.log(res)
-      })
     this.$axios.post('ChineseMedicine/medicine/lateBuy.do')
       .then(res => {
         if (res.data) {
           this.records = res.data
-          this.recordsTime = res.data[0].recordstime
-          console.log(this.records)
+          this.recordsTime = this.format(res.data[0].recordstime)
         } else {
           console.log(res.data)
         }
@@ -149,6 +144,16 @@ export default {
     }
   },
   methods: {
+    add0 (m) {
+      return m < 10 ? '0' + m : m
+    },
+    format (timeStamp) {
+      let time = new Date(timeStamp)
+      let y = time.getFullYear()
+      let m = time.getMonth() + 1
+      let d = time.getDate()
+      return y + '-' + this.add0(m) + '-' + this.add0(d)
+    },
     handleclick (url) {
       this.$router.push({
         name: url

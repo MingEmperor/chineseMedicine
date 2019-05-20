@@ -47,14 +47,23 @@ export default {
       .then(res => {
         if (res.data) {
           this.records = res.data
-          this.recordsTime = res.data[0].recordstime
-          console.log(this.records)
+          this.recordsTime = this.format(res.data[0].recordstime)
         } else {
-          console.log(res.data)
+          console.log('数据未获取到')
         }
       })
   },
   methods: {
+    add0 (m) {
+      return m < 10 ? '0' + m : m
+    },
+    format (timeStamp) {
+      let time = new Date(timeStamp)
+      let y = time.getFullYear()
+      let m = time.getMonth() + 1
+      let d = time.getDate()
+      return y + '-' + this.add0(m) + '-' + this.add0(d)
+    },
     showValueList (data) {
       this.valueList = data
     },

@@ -65,6 +65,7 @@
         确认
       </mt-button>
     </div>
+    <a ref="makeCall" style="opcity:0"></a>
   </div>
 </template>
 
@@ -113,6 +114,7 @@ export default {
       this.sheetVisible = true
     },
     handleConfrim () {
+      console.log(this.valueList)
       this.$axios.post('ChineseMedicine/recipe/addRecipe.do', {
         prescriptionName: this.prescriptionName,
         prescriptionNote: this.prescriptionNote,

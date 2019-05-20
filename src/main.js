@@ -7,6 +7,7 @@ import App from './App.vue'
 import router from './router'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import reset from './assets/css/reset.css'
+import iconfont from './assets/iconfont/iconfont.css'
 import 'swiper/dist/css/swiper.css'
 import echarts from 'echarts'
 import axios from 'axios'
@@ -18,6 +19,7 @@ Vue.prototype.$axios = axios
 Vue.prototype.$echarts = echarts
 
 Vue.use(reset)
+Vue.use(iconfont)
 Vue.use(MintUI)
 Vue.config.productionTip = false
 Vue.use(VueAwesomeSwiper)

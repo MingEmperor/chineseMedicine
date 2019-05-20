@@ -67,6 +67,7 @@ export default {
   created () {
     this.$axios.post('/ChineseMedicine/recipe/allRecipe.do')
       .then(res => {
+        console.log(res)
         this.purchaseList = res.data
         this.list = this.purchaseList
       })

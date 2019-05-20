@@ -14,7 +14,7 @@
         </div>
         <div class="presriptions-use">
           <p v-for='item in purchase.herbs' :key='item.id' class="qwe">
-            {{item.name}} - {{item.nubmer}}g
+            {{item.name}} - {{item.number}}g
           </p>
         </div>
         <div class="presriptions-desc">
@@ -37,41 +37,41 @@ export default {
     return {
       title: '处方详情',
       purchase: {
-        rid: 1,
+        id: 1,
         title: '七月七日诊ni先生',
         date: '2018-07-07',
         herbs: [{
           id: 1,
           name: '三七',
-          nubmer: '17'
+          number: '17'
         }, {
           id: 2,
           name: '麻黄',
-          nubmer: '22'
+          number: '22'
         }, {
           id: 3,
           name: '人参',
-          nubmer: '30'
+          number: '30'
         }, {
           id: 4,
           name: '鹿茸',
-          nubmer: '10'
+          number: '10'
         }, {
           id: 5,
           name: '三七',
-          nubmer: '17'
+          number: '17'
         }, {
           id: 6,
           name: '麻黄',
-          nubmer: '22'
+          number: '22'
         }, {
           id: 7,
           name: '人参',
-          nubmer: '30'
+          number: '30'
         }, {
           id: 8,
           name: '鹿茸',
-          nubmer: '10'
+          number: '10'
         }],
         desc: '这是一个备注这是一个备这是一个备注这是一个备注注这是一个备注这是一个备注',
         imgUrl: require('../../assets/img/处方详情图.jpg')
@@ -79,14 +79,13 @@ export default {
     }
   },
   created () {
-    this.$axios.get('ChineseMedicine/recipe/recipe.do', {
-      id: this.$route.params.userId
-    })
+    this.$axios.get('ChineseMedicine/recipe/recipe.do?id=' + this.$route.params.id)
       .then(res => {
-        if (res.data.success) {
+        if (res.data) {
           this.purchase = res.data
+          console.log(this.purchase.herbs)
         } else {
-          console.log(res.data.success)
+          console.log('获取失败')
         }
       })
   },

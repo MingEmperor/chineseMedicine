@@ -19,9 +19,12 @@
           <div class='item-name'>
             {{item.name}}
           </div>
-          <img class="item-img" src='../../assets/img/箭头.png'/>
+          <img
+            class='item-img'
+            src='../../assets/img/多箭头.png'
+          />
           <div class='item-dose'>
-            {{item.dose}}g
+            {{item.dose}}克
           </div>
         </li>
       </ul>
@@ -32,28 +35,6 @@
 <script>
 export default {
   props: ['recordsTime', 'records']
-  // data () {
-  //   return {
-  //     recordsTime: '2019-04-09',
-  //     records: [{
-  //       id: 1,
-  //       name: '三七',
-  //       dose: '34'
-  //     }, {
-  //       id: 2,
-  //       name: '当归',
-  //       dose: '34'
-  //     }, {
-  //       id: 3,
-  //       name: '三七',
-  //       dose: '34'
-  //     }, {
-  //       id: 4,
-  //       name: '当归',
-  //       dose: '34'
-  //     }]
-  //   }
-  // }
 }
 </script>
 
@@ -78,8 +59,9 @@ li {
 }
 .purchase-title-static {
   color: #4CAF50;
-  font-size: 1.6rem;
+  font-size: 2.2rem;
   font-weight: bold;
+  font-family: '汉仪';
   margin-bottom: .8rem;
 }
 .purchase-records-warpper {
@@ -101,7 +83,16 @@ li {
 }
 .item-img {
   margin: auto 0;
-  width: 1rem;
-  height: 1rem;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.item-dose {
+  font-family: '汉仪';
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+@font-face {
+  font-family: '汉仪';
+  src: url('../../assets/font/hanyi.ttf');
 }
 </style>

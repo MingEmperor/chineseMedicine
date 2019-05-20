@@ -53,7 +53,7 @@ export default {
             if (res.data.success) {
               Toast({
                 message: '登陆成功',
-                iconClass: 'icon icon-success'
+                iconClass: 'iconfont icon-29'
               })
               this.$router.push({
                 name: 'Home'

@@ -13,22 +13,24 @@ export default {
   name: 'hello',
   data () {
     return {
-      title: '三旬药分'
+      title: '三旬药分',
+      seriesData: [],
+      legendData: []
     }
   },
   created () {
     this.$axios.post('/ChineseMedicine/recipe/sanxun.do')
       .then(res => {
-        if (res.data.success) {
-          this.legend = res.data.legendData
-          this.series.data = res.data.seriesData
+        if (res.data) {
+          this.seriesData = res.data
+          this.seriesData.forEach(el => {
+            this.legendData.push(el.name)
+          })
+          this.drawLine()
         } else {
           console.log(res.data)
         }
       })
-  },
-  mounted () {
-    this.drawLine()
   },
   methods: {
     drawLine () {
@@ -56,13 +58,14 @@ export default {
             type: 'pie',
             radius: '55%',
             center: ['50%', '60%'],
-            data: [
-              {value: 89, name: '附子'},
-              {value: 310, name: '人参'},
-              {value: 234, name: '当归'},
-              {value: 135, name: '麻黄'},
-              {value: 266, name: '蛇胆'}
-            ],
+            // data: [
+            //   {value: 89, name: '附子'},
+            //   {value: 310, name: '人参'},
+            //   {value: 234, name: '当归'},
+            //   {value: 135, name: '麻黄'},
+            //   {value: 266, name: '蛇胆'}
+            // ],
+            data: this.seriesData,
             itemStyle: {
               emphasis: {
                 shadowBlur: 10,
