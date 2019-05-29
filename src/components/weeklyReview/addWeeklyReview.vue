@@ -3,8 +3,19 @@
     <toolbar :title='title'></toolbar>
     <div class="edit-warpper">
       <!-- error, success, warning -->
-      <mt-field v-model="prescriptionName" :state='state' label="处方" placeholder="请输入处方名称（必填）"></mt-field>
-      <mt-field label="备注" placeholder="请输入该处方的备注"></mt-field>
+      <mt-field
+        v-model="reviewName"
+        :state='state'
+        label="题目"
+        placeholder="请输入周报题目（必填）"
+      ></mt-field>
+      <mt-field
+        v-model="reviewContent"
+        class='edit-content'
+        label='正文'
+        placeholder="请输入内容"
+        type='textarea'
+      ></mt-field>
       <mt-button class="edit-select" type="primary" @click="handleChangeVisible">
         相片/开启摄像头
       </mt-button>
@@ -21,7 +32,11 @@
       <mt-button  class="edit-btn edit-select" type="primary" @click="handleConfrim">
         发表
       </mt-button>
-      <input  type="file"/>
+      <input
+        ref="makeCall"
+        type="file"
+        style="display:none;"
+      />
     </div>
   </div>
 </template>
@@ -34,7 +49,8 @@ export default {
   data () {
     return {
       title: '添加周报',
-      prescriptionName: '',
+      reviewName: '',
+      reviewContent: '',
       state: '',
       isAdding: false,
       isTaking: false,
@@ -47,7 +63,7 @@ export default {
         method: this.openMedia
       }, {
         name: '从相册中选择',
-        method: ''
+        method: this.openFile
       }]
     }
   },
@@ -82,6 +98,9 @@ export default {
       } else {
         this.state = ''
       }
+    },
+    openFile () {
+      this.$refs.makeCall.click()
     },
     openMedia () {
       this.isTaking = true
@@ -147,5 +166,8 @@ export default {
   margin: 0 auto;
   width: 94%;
   border-radius: .35rem;
+}
+.edit-content >>> .mint-field-core{
+  height: 25rem;
 }
 </style>

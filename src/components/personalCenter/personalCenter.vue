@@ -19,12 +19,14 @@
           v-model='username'
         ></mt-field>
         <mt-field
-          label='主治领域'
-          placeholder='请输入主治领域'
-          v-model='major'
+          label='密码'
+          placeholder='请输入密码'
+          v-model='password'
+          type='password'
         ></mt-field>
         <mt-field
           label='从医日期'
+          type='date'
           placeholder='请输入从医日期'
           v-model='udate'
         ></mt-field>
@@ -44,10 +46,9 @@
           v-model='telephone'
         ></mt-field>
         <mt-field
-          label='密码'
-          placeholder='请输入密码'
-          v-model='telephone'
-          type='password'
+          label='供应商电话'
+          placeholder='请输入供应商电话'
+          v-model='major'
         ></mt-field>
       </div>
       <mt-button
@@ -58,18 +59,68 @@
       >
         确认
       </mt-button>
-      <div
-        v-if="!isEditing"
-        v-for='item in personInfo'
-        :key='item.id'
-      >
+      <div v-if="!isEditing">
         <mt-cell
-          :title="item.title"
+          title='用户名'
           @click.native="handleEditcell"
           is-link
         >
           <span>
-            {{item.info}}
+            {{username}}
+          </span>
+        </mt-cell>
+        <mt-cell
+          title='密码'
+          @click.native="handleEditcell"
+          is-link
+        >
+          <span>
+            {{password}}
+          </span>
+        </mt-cell>
+        <mt-cell
+          title='从医日期'
+          @click.native="handleEditcell"
+          is-link
+        >
+          <span>
+            {{udate}}
+          </span>
+        </mt-cell>
+        <mt-cell
+          title='性别'
+          @click.native="handleEditcell"
+          is-link
+        >
+          <span>
+            {{sex}}
+          </span>
+        </mt-cell>
+        <mt-cell
+          title='邮箱'
+          @click.native="handleEditcell"
+          is-link
+        >
+          <span>
+            {{email}}
+          </span>
+        </mt-cell>
+        <mt-cell
+          title='手机号'
+          @click.native="handleEditcell"
+          is-link
+        >
+          <span>
+            {{telephone}}
+          </span>
+        </mt-cell>
+        <mt-cell
+          title='供应商电话'
+          @click.native="handleEditcell"
+          is-link
+        >
+          <span>
+            {{supplier}}
           </span>
         </mt-cell>
       </div>
@@ -77,10 +128,19 @@
         v-if="!isEditing"
         class="info-btn-exit info-btn"
         type="primary"
+        @click='handleExit'
       >
         退出当前账号
       </mt-button>
     </div>
+    <input
+      ref='makeCall'
+      type='file'
+      value=''
+      id='file'
+      style='display:none;'
+      @change='handleUpload'
+    />
   </div>
 </template>
 
@@ -98,36 +158,40 @@ export default {
       telephone: '',
       sex: '',
       udate: '',
-      major: '',
+      supplier: '',
       actions: [{
         name: '拍照',
-        methods: ''
+        method: ''
       }, {
         name: '从相册中选择',
-        methods: ''
-      }],
-      personInfo: [{
-        id: 1,
-        title: '用户名'
-      }, {
-        id: 2,
-        title: '主治领域'
-      }, {
-        id: 3,
-        title: '从医日期'
-      }, {
-        id: 4,
-        title: '性别'
-      }, {
-        id: 5,
-        title: '邮箱'
-      }, {
-        id: 6,
-        title: '药厂供应商'
+        method: this.openFile
       }]
     }
   },
+  created () {
+    this.$axios.get('ChineseMedicine/user/user.do')
+      .then(res => {
+        console.log(res.data)
+        this.username = res.data.username
+        this.password = res.data.password
+        this.sex = res.data.sex === 1 ? '男' : '女'
+        this.email = res.data.email
+        this.udate = this.format(res.data.udate)
+        this.telephone = res.data.telephone
+        this.supplier = res.data.supplier
+      })
+  },
   methods: {
+    add0 (m) {
+      return m < 10 ? '0' + m : m
+    },
+    format (timeStamp) {
+      let time = new Date(timeStamp)
+      let y = time.getFullYear()
+      let m = time.getMonth() + 1
+      let d = time.getDate()
+      return y + '-' + this.add0(m) + '-' + this.add0(d)
+    },
     handleEditcell () {
       this.isEditing = !this.isEditing
     },
@@ -137,21 +201,43 @@ export default {
         password: this.password,
         email: this.email,
         telephone: this.telephone,
-        sex: this.sex,
+        sex: this.sex === '男' ? 1 : 0,
         udate: this.udate,
-        major: this.major
+        supplier: this.supplier
       })
         .then(res => {
           console.log(res.data)
           Toast({
             message: res.data.message,
-            iconClass: 'icon icon-success'
+            iconClass: 'iconfont icon-29'
           })
           this.isEditing = !this.isEditing
         })
     },
+    handleExit () {
+      this.$router.replace({
+        name: 'Login'
+      })
+    },
     handleChangeVisible () {
       this.sheetVisible = true
+    },
+    openFile () {
+      this.$refs.makeCall.click()
+    },
+    handleUpload (e) {
+      let formData = new FormData()
+      formData.append('file', e.target.files[0])
+      let url = 'ChineseMedicine/user/upload.do'
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+      this.$axios.post(url, formData, config)
+        .then(res => {
+          this.photoUrl = res.data.url
+        })
     }
   }
 }

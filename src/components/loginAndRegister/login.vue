@@ -7,13 +7,15 @@
       label='手机号'
       placeholder="请输入手机号"
       v-model='userTel'
-    ></mt-field>
+    >
+    </mt-field>
     <mt-field
       label='密码'
       placeholder="请输入密码"
       v-model='userPassword'
       type='password'
-    ></mt-field>
+    >
+    </mt-field>
     <mt-button
       class="login-btn"
       type="primary"

@@ -140,7 +140,7 @@ export default {
   line-height: 2.8rem;
   text-align: center;
 }
-.toolbar-back-icon{
+.toolbar-back-icon {
   width: 100%;
   height: 100%;
 }
@@ -162,19 +162,18 @@ export default {
   font-size: 1.4rem;
   color:#ffffff;
 }
-.prescription-list-warpper{
+.prescription-list-warpper {
   margin: 0 auto;
   width: 92%;
 }
-.prescription-list-item{
+.prescription-list-item {
   margin: .8rem 0;
   padding: 1.8rem;
-  border-radius: .35rem;
-  border: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
 }
 .prescription-list-title{
-  font-weight: bold;
-  font-size: 1.4rem;
+  font-family: '汉宋';
+  font-size: 1.5rem;
   margin-bottom: .5rem;
 }
 .prescription-list-date{
@@ -202,5 +201,13 @@ export default {
   height: 6rem;
   line-height: 6rem;
   border-radius: 3rem;
+}
+@font-face {
+  font-family: '汉仪';
+  src: url('../../assets/font/hanyi.ttf');
+}
+@font-face {
+  font-family: '汉宋';
+  src: url('../../assets/font/汉宋.otf');
 }
 </style>

@@ -2,7 +2,6 @@
   <div class='container'>
     <toolbar :title='title'></toolbar>
     <div class='edit-warpper'>
-      <!-- error, success, warning -->
       <mt-field
         v-model='prescriptionName'
         :state='state'
@@ -10,9 +9,11 @@
         placeholder='请输入处方名称（必填）'
       ></mt-field>
       <mt-field
-        v-model='prescriptionNote'
+        v-model="prescriptionNote"
+        class='edit-content'
         label='备注'
-        placeholder='请输入该处方的备注'
+        placeholder="请输入该处方的备注"
+        type='textarea'
       ></mt-field>
       <mt-button
         class='edit-select'
@@ -66,6 +67,14 @@
       </mt-button>
     </div>
     <a ref="makeCall" style="opcity:0"></a>
+    <input
+      ref='makeCall'
+      type='file'
+      value=''
+      id='file'
+      style='display:none;'
+      @change='handleUpload'
+    />
   </div>
 </template>
 
@@ -76,23 +85,23 @@ import { Toast, Indicator } from 'mint-ui'
 export default {
   data () {
     return {
+      img: '',
+      photoUrl: '',
+      state: '',
       title: '新增处方',
       prescriptionName: '',
       prescriptionNote: '',
-      state: '',
       isAdding: false,
       isTaking: false,
       valueList: [],
       sheetVisible: false,
       mediaStreamTrack: null,
-      img: '',
-      photoUrl: '',
       actions: [{
         name: '拍照',
         method: this.openMedia
       }, {
         name: '从相册中选择',
-        method: ''
+        method: this.openFile
       }]
     }
   },
@@ -114,29 +123,38 @@ export default {
       this.sheetVisible = true
     },
     handleConfrim () {
-      console.log(this.valueList)
-      this.$axios.post('ChineseMedicine/recipe/addRecipe.do', {
-        prescriptionName: this.prescriptionName,
-        prescriptionNote: this.prescriptionNote,
-        valueList: this.valueList,
-        photoUrl: this.photoUrl
-      })
-        .then(res => {
-          if (res.data.success) {
-            Toast({
-              message: '操作成功',
-              duration: 1500,
-              iconClass: 'icon icon-success'
-            })
-          }
+      if (!this.prescriptionName) {
+        Toast('请填写处方名称')
+      } else if (this.valueList.length === 0) {
+        Toast('请选择并添加药材')
+      } else {
+        this.$axios.post('ChineseMedicine/recipe/addRecipe.do', {
+          prescriptionName: this.prescriptionName,
+          prescriptionNote: this.prescriptionNote,
+          valueList: this.valueList,
+          photoUrl: 'http://39.96.32.35:8080/ChineseMedicine/recipe/' + this.photoUrl
         })
+          .then(res => {
+            if (res.data.success) {
+              Toast({
+                message: '操作成功',
+                duration: 1500,
+                iconClass: 'iconfont icon-29'
+              })
+              this.$router.back()
+            }
+          })
+      }
     },
     handleState () {
-      if (this.prescriptionName !== '') {
+      if (this.prescriptionName) {
         this.state = 'success'
       } else {
-        this.state = ''
+        this.state = 'error'
       }
+    },
+    openFile () {
+      this.$refs.makeCall.click()
     },
     openMedia () {
       this.isTaking = true
@@ -172,12 +190,31 @@ export default {
       console.log('img-----', this.img)
       // document.getElementById('imgTag').src = img
       this.mediaStreamTrack.stop()
-      this.$axios.post('ChineseMedicine/recipe/upload.do', {
-        file: this.img
-      })
+      let formData = new FormData()
+      formData.append('file', this.img)
+      let url = 'ChineseMedicine/recipe/upload.do'
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+      this.$axios.post(url, formData, config)
         .then(res => {
-          console.log(res.data)
-          this.photoUrl = res.data
+          console.log(res)
+        })
+    },
+    handleUpload (e) {
+      let formData = new FormData()
+      formData.append('file', e.target.files[0])
+      let url = 'ChineseMedicine/recipe/upload.do'
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+      this.$axios.post(url, formData, config)
+        .then(res => {
+          this.photoUrl = res.data.url
         })
     }
   },
@@ -213,5 +250,8 @@ export default {
   margin: 0 auto;
   width: 94%;
   border-radius: .35rem;
+}
+.edit-content >>> .mint-field-core{
+  height: 25rem;
 }
 </style>

@@ -18,10 +18,6 @@
 <script>
 export default {
   props: ['title'],
-  data () {
-    return {
-    }
-  },
   methods: {
     handleBack () {
       this.$router.back()
@@ -48,7 +44,7 @@ export default {
   line-height: 2.8rem;
   text-align: center;
 }
-.toolbar-back-icon{
+.toolbar-back-icon {
   width: 100%;
   height: 100%;
 }

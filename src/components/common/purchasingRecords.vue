@@ -16,7 +16,7 @@
           class='purchase-records-item'
           :class="{'purchase-records-item-last ': item.id === records.length}"
         >
-          <div class='item-name'>
+          <div class='item-dose'>
             {{item.name}}
           </div>
           <img
@@ -64,6 +64,10 @@ li {
   font-family: '汉仪';
   margin-bottom: .8rem;
 }
+.purchase-title-time{
+  font-size: 1.4rem;
+  font-family: '汉仪';
+}
 .purchase-records-warpper {
   margin:0 auto;
   width: 92%;
@@ -87,12 +91,16 @@ li {
   height: 1.2rem;
 }
 .item-dose {
-  font-family: '汉仪';
+  font-family: '汉宋';
   font-weight: bold;
   font-size: 1.6rem;
 }
 @font-face {
   font-family: '汉仪';
   src: url('../../assets/font/hanyi.ttf');
+}
+@font-face {
+  font-family: '汉宋';
+  src: url('../../assets/font/汉宋.otf');
 }
 </style>

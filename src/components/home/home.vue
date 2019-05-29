@@ -3,7 +3,11 @@
     <mt-tab-container v-model="selected" swipeable>
       <mt-tab-container-item id="home">
         <div class="toolbar-index">
-          <div class="toolbar-input" type="text" @click="quary">
+          <div
+            class="toolbar-input"
+            type="text"
+            @click="quary"
+          >
             这里输入想查询的处方..
           </div>
           <div class="toolbar-btn">
@@ -36,15 +40,6 @@
           :records='records'
         ></purchasing-record>
       </mt-tab-container-item>
-
-      <!-- <mt-tab-container-item id="tab-container2">
-        <prescriptions-list>
-        </prescriptions-list>
-      </mt-tab-container-item>
-      <mt-tab-container-item id="tab-container3">
-        <index>
-        </index>
-      </mt-tab-container-item> -->
       <mt-tab-container-item id="tab-container4">
         <personal-center>
         </personal-center>
@@ -56,15 +51,11 @@
         <img slot="icon" src="../../assets/img/home.png">
         首页
       </mt-tab-item>
-      <!-- <mt-tab-item id="tab-container2" class="mat-tab-auto" fixed>
-        <img slot="icon" src="../../assets/img/处方.png">
-        处方
-      </mt-tab-item>
-      <mt-tab-item id="tab-container3" class="mat-tab-auto" fixed>
-        <img slot="icon" src="../../assets/img/中药.png">
-        订购药材
-      </mt-tab-item> -->
-      <mt-tab-item id="tab-container4" class="mat-tab-auto" fixed>
+      <mt-tab-item
+        id="tab-container4"
+        class="mat-tab-auto"
+        fixed
+      >
         <img slot="icon" src="../../assets/img/个人中心.png">
         个人中心
       </mt-tab-item>
@@ -134,7 +125,7 @@ export default {
           this.records = res.data
           this.recordsTime = this.format(res.data[0].recordstime)
         } else {
-          console.log(res.data)
+          console.log('最近采购获取失败')
         }
       })
   },
@@ -147,6 +138,11 @@ export default {
     add0 (m) {
       return m < 10 ? '0' + m : m
     },
+    quary () {
+      this.$router.push({
+        name: 'PrescriptionsList'
+      })
+    },
     format (timeStamp) {
       let time = new Date(timeStamp)
       let y = time.getFullYear()
@@ -157,11 +153,6 @@ export default {
     handleclick (url) {
       this.$router.push({
         name: url
-      })
-    },
-    quary () {
-      this.$router.push({
-        name: 'PrescriptionsList'
       })
     }
   },
@@ -176,7 +167,7 @@ export default {
 </script>
 
 <style scoped>
-.toolbar-index{
+.toolbar-index {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -184,7 +175,7 @@ export default {
   height: 3.4rem;
   background-color: #4CAF50;
 }
-.toolbar-input{
+.toolbar-input {
   padding-left: .5rem;
   width: 65%;
   height: 2.8rem;
@@ -195,7 +186,7 @@ export default {
   color: #a3a3a3;
   background-color: #ffffff;
 }
-.toolbar-btn{
+.toolbar-btn {
   width: 4rem;
   height: 2.8rem;
   line-height: 2.8rem;
@@ -204,20 +195,20 @@ export default {
   font-size: 1.4rem;
   color:#ffffff;
 }
-.func-warpper{
+.func-warpper {
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
   width: 100%;
   height: 5rem;
 }
-.func-item-warpper{
+.func-item-warpper {
   display: inline-block;
   position: relative;
   width: 23%;
   height: 100%;
 }
-.func-item-img{
+.func-item-img {
   position: absolute;
   left: 50%;
   margin-top: .3rem;
@@ -225,7 +216,7 @@ export default {
   width: 2.8rem;
   height: 2.8rem;
 }
-.func-item-desc{
+.func-item-desc {
   position: absolute;
   left: 50%;
   margin-top: 3.5rem;
@@ -240,7 +231,7 @@ export default {
 .myswiper >>> .swiper-pagination-bullet-active {
     background:#fff !important;
 }
-.swiper-wrapper{
+.swiper-wrapper {
   position:relative;
   width: 100%;
   height: 0;
@@ -255,7 +246,7 @@ export default {
    position:absolute;
    top:60%;
 }
-.mat-tab-auto{
+.mat-tab-auto {
   color: #4CAF50 !important;
 }
 </style>

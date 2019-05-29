@@ -16,7 +16,7 @@
         v-for='item in list'
         :key='item.id'
         class='prescription-list-item'
-        @click='handleDetail'
+        @click='handleDetail(item.id)'
       >
         <div class='prescription-list-title'>
           {{item.title}}
@@ -24,8 +24,11 @@
         <div class='prescription-list-img'>
           <img :src='item.imgUrl' />
         </div>
+        <div class='prescription-list-author'>
+          {{item.author}}
+        </div>
         <div class='prescription-list-date'>
-          {{item.purchaseDate}}
+          {{item.reviewDate}}
         </div>
       </div>
     </div>
@@ -44,36 +47,47 @@ export default {
       keyword: '',
       timer: null,
       list: [],
-      purchaseList: [{
-        id: 1,
-        title: '关于伤寒论的探究浅析',
-        purchaseDate: '2019-07-01',
-        imgUrl: require('../../assets/img/shanghanlun.jpg')
-      }, {
-        id: 2,
-        title: '六阳病症浅谈',
-        purchaseDate: '2019-08-06',
-        imgUrl: require('../../assets/img/shanghanlun.jpg')
-      }, {
-        id: 3,
-        title: '微观角度分析中成药',
-        purchaseDate: '2019-07-01',
-        imgUrl: require('../../assets/img/shanghanlun.jpg')
-      }, {
-        id: 4,
-        title: '中医与周易关系考究',
-        purchaseDate: '2019-07-01',
-        imgUrl: require('../../assets/img/shanghanlun.jpg')
-      }, {
-        id: 5,
-        title: '五行对应草药成分',
-        purchaseDate: '2019-07-01',
-        imgUrl: require('../../assets/img/shanghanlun.jpg')
-      }]
+      reviewList: []
+      // reviewList: [{
+      //   id: 1,
+      //   title: '关于伤寒论的探究浅析',
+      //   author: '丘处机',
+      //   reviewDate: '2019-07-01',
+      //   imgUrl: require('../../assets/img/shanghanlun.jpg')
+      // }, {
+      //   id: 2,
+      //   title: '六阳病症浅谈',
+      //   author: '王重阳',
+      //   reviewDate: '2019-08-06',
+      //   imgUrl: require('../../assets/img/shanghanlun.jpg')
+      // }, {
+      //   id: 3,
+      //   title: '微观角度分析中成药',
+      //   author: '马钰',
+      //   reviewDate: '2019-07-01',
+      //   imgUrl: require('../../assets/img/shanghanlun.jpg')
+      // }, {
+      //   id: 4,
+      //   title: '中医与周易关系考究',
+      //   author: '王处一',
+      //   reviewDate: '2019-07-01',
+      //   imgUrl: require('../../assets/img/shanghanlun.jpg')
+      // }, {
+      //   id: 5,
+      //   title: '五行对应草药成分',
+      //   author: '刘处玄',
+      //   reviewDate: '2019-07-01',
+      //   imgUrl: require('../../assets/img/shanghanlun.jpg')
+      // }]
     }
   },
   created () {
-    this.list = this.purchaseList
+    this.$axios.get('ChineseMedicine/report/allReport.do')
+      .then(res => {
+        console.log(res.data)
+        this.reviewList = res.data
+        this.list = this.reviewList
+      })
   },
   watch: {
     keyword () {
@@ -82,14 +96,14 @@ export default {
         clearTimeout(this.timer)
       }
       if (!this.keyword) {
-        this.list = this.purchaseList
+        this.list = this.reviewList
         return
       }
       this.timer = setTimeout(() => {
         const result = []
-        for (let i in this.purchaseList) {
-          if (this.purchaseList[i].title.indexOf(this.keyword) > -1) {
-            result.push(this.purchaseList[i])
+        for (let i in this.reviewList) {
+          if (this.reviewList[i].title.indexOf(this.keyword) > -1) {
+            result.push(this.reviewList[i])
           }
         }
         this.list = result
@@ -107,9 +121,12 @@ export default {
         name: 'AddWeeklyReview'
       })
     },
-    handleDetail () {
+    handleDetail (id) {
       this.$router.push({
-        name: 'WeeklyReview'
+        name: 'WeeklyReview',
+        params: {
+          id: id
+        }
       })
     }
   },
@@ -170,23 +187,33 @@ export default {
   margin: .8rem 0;
   padding: 1.8rem;
   border-radius: .35rem;
-  border: 1px solid #dddddd;
+  border-bottom: 1px solid #aaaaaa;
 }
 .prescription-list-title{
-  font-size: 1.5rem;
+  height: 2rem;
+  text-align: center;
+  font-size: 1.6rem;
   margin-bottom: .5rem;
 }
 .prescription-list-img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   margin-bottom: .8rem;
 }
 .prescription-list-img > img{
-  width: 80%;
+  width: 90%;
+}
+.prescription-list-author{
+  margin-top: .5rem;
+  font-size: 1.5rem;
+  color: #333;
 }
 .prescription-list-date{
+  margin-top: .5rem;
   font-size: 1.25rem;
-  font-weight: bold;
-  color: #4CAF50;
+  color: #aaa;
 }
 .float-add{
   z-index: 999;

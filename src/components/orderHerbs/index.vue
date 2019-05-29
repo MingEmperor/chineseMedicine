@@ -7,7 +7,8 @@
     <purchasing-record
       :recordsTime='recordsTime'
       :records='records'
-    ></purchasing-record>
+    >
+    </purchasing-record>
     <select-herbs
       class="select-herbs-wapper"
       :isAdding='true'
@@ -68,9 +69,10 @@ export default {
       this.valueList = data
     },
     handleAdd () {
+      this.handleSpellName()
       MessageBox({
-        title: '即将订购药材',
-        message: '我们将会给你的供应商发送短信订单，确定要订购吗?',
+        title: '供应商将收到如下短信，确认订购吗？',
+        message: this.order,
         confirmButtonText: '确认订购',
         confirmButtonClass: 'confirm-btn',
         showCancelButton: true
@@ -79,7 +81,12 @@ export default {
       })
     },
     handleSpellName () {
-
+      if (!this.order) {
+        this.order += '【上医堂】你好，我需要采购如下药材：' + ' \n'
+        this.valueList.forEach(el => {
+          this.order += el.name + ':' + el.number + '克' + ' \n'
+        })
+      }
     },
     handleMakeCall () {
       this.makeCall = this.$refs.makeCall
@@ -93,6 +100,10 @@ export default {
         this.makeCall.href = 'sms://' + this.tel + '&body=' + this.order
       }
       this.makeCall.click()
+      this.$axios.post('ChineseMedicine/medicine/buyMedicine.do', {
+        mas: this.valueList
+      })
+        .then(console.log('成功'))
     }
   },
   components: {

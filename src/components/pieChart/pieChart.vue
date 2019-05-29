@@ -2,7 +2,11 @@
   <div>
     <toolbar :title='title'></toolbar>
     <div class='pieChart-warpper'>
-    <div class='pieChart' id="myChart" :style="{width: '360px', height:'360px'}"></div>
+    <div
+      class='pieChart'
+      id="myChart"
+      :style="{width: '360px', height:'360px'}"
+    ></div>
     </div>
   </div>
 </template>
@@ -40,7 +44,7 @@ export default {
       var option = {
         title: {
           text: '药分前五',
-          subtext: '根据上月开具处方中的药材剂量绘制',
+          subtext: '根据上月开具处方中的药量绘制',
           x: 'center'
         },
         tooltip: {
@@ -50,7 +54,7 @@ export default {
         legend: {
           orient: 'vertical',
           left: 'left',
-          data: ['附子', '人参', '当归', '麻黄', '蛇胆']
+          data: this.legendData
         },
         series: [
           {
@@ -58,13 +62,6 @@ export default {
             type: 'pie',
             radius: '55%',
             center: ['50%', '60%'],
-            // data: [
-            //   {value: 89, name: '附子'},
-            //   {value: 310, name: '人参'},
-            //   {value: 234, name: '当归'},
-            //   {value: 135, name: '麻黄'},
-            //   {value: 266, name: '蛇胆'}
-            // ],
             data: this.seriesData,
             itemStyle: {
               emphasis: {

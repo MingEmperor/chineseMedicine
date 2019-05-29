@@ -8,31 +8,36 @@
       placeholder="请输入用户名"
       v-model='userTel'
       type='tel'
-    ></mt-field>
+    >
+    </mt-field>
     <mt-field
       label='密码'
       placeholder="请输入密码"
       v-model='userPassword'
       type='password'
-    ></mt-field>
+    >
+    </mt-field>
     <mt-field
       label='确认密码'
       placeholder="请确认密码"
       v-model='confrimPassword'
       type='password'
-    ></mt-field>
+    >
+    </mt-field>
     <mt-field
       label='邮箱'
       placeholder="请输入邮箱"
       v-model='userEmail'
       type='email'
-    ></mt-field>
+    >
+    </mt-field>
     <mt-field
       label='手机号'
       placeholder="请输入手机号"
       v-model='userSaleTel'
       type='tel'
-    ></mt-field>
+    >
+    </mt-field>
     <mt-button
       class="login-btn"
       type="primary"
@@ -112,7 +117,7 @@ export default {
 </script>
 
 <style scoped>
-.container{
+.container {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -124,23 +129,23 @@ export default {
   width: 26rem;
   height: 36rem;
 }
-header{
+header {
   height: 3rem;
   line-height: 3rem;
   text-align: center;
   font-size: 1.8rem;
 }
-.bg-img{
+.bg-img {
   position: relative;
   width: 100%;
   height: 0;
   padding-bottom: 33.37%;
   background-color: #4CAF50;
 }
-.info-warpper{
+.info-warpper {
   margin: 3.3rem auto;
 }
-.info-photo{
+.info-photo {
   position: absolute;
   bottom: -3rem;
   left: 50%;
@@ -151,11 +156,11 @@ header{
   border-radius: 3.2rem;
   background-color: #ffffff;
 }
-.info-photo-img{
+.info-photo-img {
   border-radius: 3.2rem;
   width: 100%;
 }
-.login-btn{
+.login-btn {
   margin: .5rem 5%;
   width: 90%;
   height: 3.6rem;
@@ -165,7 +170,7 @@ header{
   color: #ffffff;
   background-color: #4CAF50;
 }
-.register-btn{
+.register-btn {
   margin: .5rem 5%;
   width: 90%;
   height: 3.6rem;

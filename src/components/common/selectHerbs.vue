@@ -46,6 +46,7 @@
             type='number'
             maxlength='4'
             oninput='if(value.length>4)value=value.slice(0,4)'
+            @change='handleChangeNumber(item)'
           />
           <div
             class='select-item-symbol'
@@ -59,12 +60,6 @@
         <span>试试这样搜，例如：</span>
         <span class='tips-example'>陈皮</span>
       </div>
-      <!-- <div
-        v-if='valueList.length !== 0 && list.length !== 0'
-        class='select-item tips'
-      >
-        <span>以上是已经选好的药材</span>
-      </div> -->
     </div>
   </div>
 </template>
@@ -131,6 +126,11 @@ export default {
       if (item.number === 0 && this.valueList.includes(item)) {
         this.valueList.splice(this.valueList.indexOf(item), 1)
       }
+    },
+    handleChangeNumber (item) {
+      if (item.number > 0) {
+        this.valueList.push(item)
+      }
     }
   },
   components: {
@@ -140,30 +140,29 @@ export default {
 </script>
 
 <style>
-.select-warpper{
+.select-warpper {
   width: 100%;
-  border: 1px solid rgba(76, 175, 80, .2);
+  border: 1px solid rgba(76, 175, 80, .3);
 }
-.select-banner{
+.select-banner {
   position: relative;
   margin-bottom: .3rem;
   display: flex;
   align-items: center;
+  justify-content: center;
   width: 100%;
   height: 4.2rem;
   line-height: 3.4rem;
   background-color: #ffffff;
-  background-color: rgba(76, 175, 80, .1);
-  border-bottom: 1px solid rgba(76, 175, 80, .2);
+  border-bottom: 1px solid rgba(76, 175, 80, .3);
 }
-.select-search{
+.select-search {
   width: 100%;
   height: 100%;
   font-size: 1.4rem;
   text-align: center;
-  border: 0px;
 }
-.select-btn{
+.select-btn {
   position: absolute;
   right: .5rem;
   width: 6.6rem;
@@ -174,45 +173,45 @@ export default {
   font-size: 1.3rem;
   background-color: #4CAF50;
 }
-.select-item{
+.select-item {
   display: flex;
   align-items: center;
   justify-content: space-around;
   width: 100%;
   height: 4.2rem;
-  font-family: '汉仪';
-  border-bottom: 1px solid rgba(76,175,80,.2);
+  border-bottom: 1px solid rgba(76,175,80,.3);
   background-color: #ffffff;
 }
-.select-item-img{
+.select-item-img {
   opacity: 0;
   width: 2.6rem;
   height: 2.6rem;
 }
-.select-item-img-select{
+.select-item-img-select {
   opacity: 1;
 }
-.select-item-title{
+.select-item-title {
   min-width: 8rem;
   margin-right: 5rem;
   padding: 0 .6rem;
   height: 2.8rem;
   line-height: 2.8rem;
   text-align: center;
-  font-size: 2rem;
+  font-family: '汉宋';
+  font-size: 1.4rem;
   border-radius: .35rem;
   color: #000000;
   background-color: rgba(76,175,80,.1);
   border: 1px solid rgba(76,175,80,.2);
 }
-.select-item-calculate{
+.select-item-calculate {
   display:flex;
   align-items: center;
   justify-content: space-between;
   width: 10rem;
   height: 3rem;
 }
-.select-item-symbol{
+.select-item-symbol {
   width: 2.4rem;
   height: 2.4rem;
   line-height: 2.4rem;
@@ -221,13 +220,13 @@ export default {
   font-size: 1.6rem;
   border: 1px solid #4CAF50;
 }
-.select-item-number{
+.select-item-number {
   width: 4rem;
   font-size: 1.6rem;
   text-align: center;
   border: 1px solid rgba(76,175,80,.4);
 }
-.tips{
+.tips {
   display:flex;
   align-items: center;
   justify-content: center;
@@ -235,14 +234,14 @@ export default {
   font-size: 1.3rem;
   border: 0px;
 }
-.tips-example{
+.tips-example {
   font-size: 1.6rem;
   font-family: '楷体';
   font-weight: bold;
   color: #4CAF50;
 }
 @font-face {
-  font-family: '汉仪';
-  src: url('../../assets/font/hanyi.ttf');
+  font-family: '汉宋';
+  src: url('../../assets/font/汉宋.otf');
 }
 </style>
