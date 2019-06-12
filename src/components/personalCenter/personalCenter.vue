@@ -45,11 +45,11 @@
           placeholder='请输入手机号'
           v-model='telephone'
         ></mt-field>
-        <mt-field
+        <!-- <mt-field
           label='供应商电话'
           placeholder='请输入供应商电话'
           v-model='major'
-        ></mt-field>
+        ></mt-field> -->
       </div>
       <mt-button
         v-if="isEditing"
@@ -114,7 +114,7 @@
             {{telephone}}
           </span>
         </mt-cell>
-        <mt-cell
+        <!-- <mt-cell
           title='供应商电话'
           @click.native="handleEditcell"
           is-link
@@ -122,7 +122,7 @@
           <span>
             {{supplier}}
           </span>
-        </mt-cell>
+        </mt-cell> -->
       </div>
       <mt-button
         v-if="!isEditing"

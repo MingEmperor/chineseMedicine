@@ -2,7 +2,6 @@
   <div class="container">
     <toolbar :title='title'></toolbar>
     <div class="edit-warpper">
-      <!-- error, success, warning -->
       <mt-field
         v-model="reviewName"
         :state='state'
@@ -33,10 +32,13 @@
         发表
       </mt-button>
       <input
-        ref="makeCall"
-        type="file"
-        style="display:none;"
-      />
+        ref='makeCall'
+        type='file'
+        value=''
+        id='file'
+        style='display:none;'
+        @change='handleUpload'
+       />
     </div>
   </div>
 </template>
@@ -85,12 +87,20 @@ export default {
       this.sheetVisible = true
     },
     handleConfrim () {
-      Toast({
-        message: '操作成功',
-        duration: 1500,
-        iconClass: 'icon icon-success'
+      this.$axios.post('ChineseMedicine/report/addReport.do', {
+        title: this.reviewName,
+        rdesc: this.reviewContent,
+        reviewDate: Number(new Date()),
+        imgUrl: 'http://39.96.32.35:8080/ChineseMedicine/recipe/' + this.photoUrl
       })
-      console.log(this.valueList)
+        .then(res => {
+          Toast({
+            message: '操作成功',
+            duration: 1500,
+            iconClass: 'iconfont icon-29'
+          })
+          this.$router.back()
+        })
     },
     handleState () {
       if (this.prescriptionName !== '') {
@@ -136,6 +146,20 @@ export default {
       console.log('img-----', this.photoUrl)
       // document.getElementById('imgTag').src = img
       this.mediaStreamTrack.stop()
+    },
+    handleUpload (e) {
+      let formData = new FormData()
+      formData.append('file', e.target.files[0])
+      let url = 'ChineseMedicine/recipe/upload.do'
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+      this.$axios.post(url, formData, config)
+        .then(res => {
+          this.photoUrl = res.data.url
+        })
     }
   },
   components: {

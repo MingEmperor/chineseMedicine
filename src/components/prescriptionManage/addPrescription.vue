@@ -124,6 +124,7 @@ export default {
     },
     handleConfrim () {
       if (!this.prescriptionName) {
+        this.state = 'error'
         Toast('请填写处方名称')
       } else if (this.valueList.length === 0) {
         Toast('请选择并添加药材')

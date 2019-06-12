@@ -83,7 +83,7 @@ export default {
               if (res.data.success) {
                 Toast({
                   message: '注册成功',
-                  iconClass: 'icon icon-success'
+                  iconClass: 'iconfont icon-29'
                 })
                 this.$router.replace({
                   name: 'Login'

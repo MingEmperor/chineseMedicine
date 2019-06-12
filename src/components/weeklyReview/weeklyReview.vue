@@ -9,7 +9,7 @@
             {{review.title}}
           </span>
           <span class="presriptions-title-date">
-            {{review.date}}
+            {{review.reviewDate}}
           </span>
         </div>
         <div class="presriptions-img">
@@ -130,16 +130,19 @@ export default {
   position: relative;
   width: 96%;
   margin: 2rem auto;
-  border: 1px dashed #aaa;
+  border-top: 1px solid #aaa;
 }
 .presriptions-title{
   position: absolute;
+  padding: 0 1rem;
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   top: -1.5rem;
-  left: 2rem;
-  height: 3rem;
-  line-height: 3rem;
+  left: 50%;
+  font-family: '汉宋';
+  transform: translateX(-50%);
   background-color: #ffffff;
 }
 .presriptions-title-text{
@@ -166,6 +169,7 @@ export default {
 }
 .presriptions-img{
   margin: .8rem auto;
+  margin-top: 1.5rem;
   width: 96%;
   border: 1px solid #e3e3e3;
 }
@@ -202,5 +206,9 @@ export default {
   height: 6rem;
   line-height: 6rem;
   border-radius: 3rem;
+}
+@font-face {
+  font-family: '汉宋';
+  src: url('../../assets/font/汉宋.otf');
 }
 </style>
